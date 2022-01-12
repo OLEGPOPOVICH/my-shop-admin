@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "strict": true,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "plugins": [{
+      "name": "typescript-plugin-css-modules",
+      "options": {
+        "customMatcher": "\\.module\\.(c|le|sa|sc)ss$",
+      },
+      "types": [
+        "node"
+      ]
+    }],
+    "paths": {
+      "@src/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@features/*": ["src/features/*"],
+      "@store/*": ["src/store/*"],
+      "@store": ["src/store/index.ts"],
+    }
+  },
+  "include": [
+    "src/**/*.*"
+, "tsconfig.eslint.json"  ],
+}

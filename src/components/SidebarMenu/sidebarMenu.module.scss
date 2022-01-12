@@ -1,0 +1,22 @@
+.menu {
+
+  &Item {
+    width: 100%;
+    padding: 0 0.5rem;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+
+    > a {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      text-decoration: none;
+      color: white;
+
+      > span {
+        margin-left: 0.5rem;
+        line-height: 1.5;
+      }
+    }
+  }
+}

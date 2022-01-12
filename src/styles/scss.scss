@@ -1,0 +1,81 @@
+@import "~normalize.css";
+@import "roboto.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+	padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-left: 250px;
+}
+
+.profile {
+  display: flex;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem;
+  background-color: black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.wrapper-page {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex: 0 0 auto;
+}
+
+.container {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+.txt {
+  &-center {
+    text-align: center;
+  }
+}
+
+.MenuItem {
+  width: 100%;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+
+  > a {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+    color: white;
+
+    > span {
+      margin-left: 0.5rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+.page {
+  border-top: 1px solid #ffba00;
+  padding: 1rem 0;
+}
