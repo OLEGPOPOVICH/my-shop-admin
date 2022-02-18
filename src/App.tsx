@@ -1,7 +1,7 @@
 import React from "react";
-import { Header } from "@components/Header/Header";
-import { Sidebar } from "@components/Sidebar/Sidebar";
-import { AppRoutes } from "./routes";
+import { Header } from "@src/components/Header";
+import { Sidebar } from "@src/components/Sidebar";
+import { AppRoutes } from "./AppRoutes";
 
 export const App = () => (
   <>

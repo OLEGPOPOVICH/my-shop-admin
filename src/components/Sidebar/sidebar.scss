@@ -10,7 +10,7 @@
   width: 250px;
   z-index: 9999;
 
-  &Header {
+  &__header {
     display: flex;
     align-items: center;
     width: 100%;
@@ -19,11 +19,11 @@
     border-bottom: 1px solid #ffba00;
   }
 
-  &Body {
+  &__body {
     flex: 1 0 auto;
   }
 
-  &Footer {
+  &__footer {
     height: 50px;
     border-top: 1px solid #ffba00;
   }
