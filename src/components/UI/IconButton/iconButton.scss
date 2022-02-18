@@ -1,0 +1,11 @@
+.btn_icon {
+  padding: 6px;
+
+  > span {
+    display: block;
+  }
+
+  &.active {
+    background-color: #ffba00;
+  }
+}
