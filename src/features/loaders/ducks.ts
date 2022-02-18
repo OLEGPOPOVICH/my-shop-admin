@@ -1,26 +1,42 @@
-import { GLOBAL_LOADER, PAGE_LOADER, LoaderActionType } from "./actions";
+import {
+  TOGGLE_GLOBAL_LOADER,
+  SET_LOADER,
+  REMOVE_LOADER,
+  LoaderActionType,
+} from "./actions";
 
 const initialState = {
   globalLoader: false,
-  pageLoader: false,
+  loaders: {} as { [key: string]: boolean },
 };
 
-export type InitialStateType = typeof initialState;
+type InitialStateType = typeof initialState;
 
 export const loaderReducer = (
   state = initialState,
   action: LoaderActionType
 ): InitialStateType => {
   switch (action.type) {
-    case GLOBAL_LOADER:
+    case TOGGLE_GLOBAL_LOADER:
       return {
         ...state,
         globalLoader: !state.globalLoader,
       };
-    case PAGE_LOADER:
+    case SET_LOADER:
       return {
         ...state,
-        pageLoader: !state.pageLoader,
+        loaders: {
+          ...state.loaders,
+          [action.payload]: true,
+        },
+      };
+    case REMOVE_LOADER:
+      return {
+        ...state,
+        loaders: {
+          ...state.loaders,
+          [action.payload]: false,
+        },
       };
     default:
       return state;

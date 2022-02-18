@@ -1,7 +1,10 @@
 export {
+  removeLoader,
+  setLoader,
   toggleGlobalLoader,
-  togglePageLoader,
   LoaderActionType,
 } from "./actions";
-export { loaderReducer, InitialStateType } from "./ducks";
-export { Loader } from "./Loader/Loader";
+export { loaderReducer } from "./ducks";
+export { Loader } from "./Loader";
+export { LoaderWrap } from "./LoaderWrap";
+export { loadersSelectors } from "./selectors";
