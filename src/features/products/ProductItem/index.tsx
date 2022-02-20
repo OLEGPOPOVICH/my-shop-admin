@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import { DiscountPrice } from "@src/components/Styles";
 import { IconButton, Img } from "@src/components/UI";
 
@@ -38,7 +37,7 @@ export const ProductItem = ({
         {product.imgUrl && (!isViewFields || viewFields.imgUrl) ? (
           <div className="card_img">
             <Img
-              src={product.imgUrl}
+              src={`../images/${product.imgUrl}`}
               alt={product.title ? product.title : ""}
             />
           </div>
