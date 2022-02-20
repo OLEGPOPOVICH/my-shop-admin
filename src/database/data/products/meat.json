@@ -1,0 +1,122 @@
+[
+  {
+    "id": "01",
+    "title": "Филе грудки индейки",
+    "desc": "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке.",
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 200,
+    "discountPrice": 100,
+    "discountPercent": 50,
+    "purchasePrice": 100,
+    "imgUrl": "meat/289e8d7ed944ca608cc98c494cfa10ce8f15458c_m650_ee444e1f6960bbc67c9e2af237d4ca4bfc08e05993f00e69bd3c79f3063beb29.jpg"
+  },
+  {
+    "id": "02",
+    "title": "Бедро куриное",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 250,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/59ac555980e604bc14e13e2f435feadbd6c1ebe7_m650_85cbf6bc6ffb63a4ffced1db6537ae37f2596f31d531c60baf4f53400548486f.jpg"
+  },
+  {
+    "id": "03",
+    "title": "Ребра свиные",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 450,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/a3f8503d8b22cdeeb8fe0b37b0b67850fce219e1_m650.jpg"
+  },
+  {
+    "id": "04",
+    "title": "Филе куриное грудка",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 450,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/7233e83282cdbd3a10726c1404f15d0c25008b30_m650.jpg"
+  },
+  {
+    "id": "05",
+    "title": "Голень куриная",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 250,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/d28bbc9fe46a2b4904d41f7b5dfe2ac55e68144f_m650.webp"
+  },
+  {
+    "id": "06",
+    "title": "Азу из индейки",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 250,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/12e8995ab9e2d7102eb6e0ae10f346a56a706161_m650.jpg"
+  },
+  {
+    "id": "07",
+    "title": "Котлеты говяжьи",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 250,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/225e8bba44bc2ed587d1d4cf563b224c8f4bd61b_m650.jpg"
+  },
+  {
+    "id": "08",
+    "title": "Колбаски свиные",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 250,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/026b8f7784fb3109d4e9f27110a6fb5979086d66_m650.jpg"
+  },
+  {
+    "id": "09",
+    "title": "Купаты из индейки",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 250,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/07964695ec099ce5dbf31e2535ddc26180b4dfa0_m650.jpg"
+  },
+  {
+    "id": "010",
+    "title": "Печень говяжья",
+    "desc": null,
+    "categoryName": "Мясо",
+    "category": "Meat",
+    "price": 350,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 100,
+    "imgUrl": "meat/81685e6d21483f2b639d528d1e8a0070427eddfc_m650.jpg"
+  }
+]

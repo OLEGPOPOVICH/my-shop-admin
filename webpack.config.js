@@ -121,7 +121,10 @@ module.exports = {
       "@components": path.resolve(__dirname, 'src/components'),
       "@features": path.resolve(__dirname, 'src/features'),
       "@pages": path.resolve(__dirname, 'src/pages'),
-      "@store": path.resolve(__dirname, 'src/store')
+      "@store": path.resolve(__dirname, 'src/store'),
+      "@api": path.resolve(__dirname, 'src/api'),
+      "@database": path.resolve(__dirname, 'src/database'),
+      "@mocks": path.resolve(__dirname, 'src/mocks'),
     }
   },
   optimization: optimization(),
