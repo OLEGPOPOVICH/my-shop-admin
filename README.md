@@ -12,3 +12,17 @@
 - [styled-components](https://styled-components.com/)
 - [Mock Service Worker](https://mswjs.io/)
 - [axios](https://axios-http.com/ru/docs/api_intro)
+
+### Запуск проекта
+
+```javascript
+npm i
+```
+
+```javascript
+npm start
+```
+
+```javascript
+http://localhost:4200/#/
+```
