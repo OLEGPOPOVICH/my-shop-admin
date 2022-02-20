@@ -1,0 +1,37 @@
+[
+  {
+    "label": "Описание",
+    "name": "desc",
+    "checked": true
+  },
+  {
+    "label": "Категория",
+    "name": "categoryName",
+    "checked": true
+  },
+  {
+    "label": "Цена",
+    "name": "price",
+    "checked": true
+  },
+  {
+    "label": "Цена со скидкой",
+    "name": "discountPrice",
+    "checked": true
+  },
+  {
+    "label": "Закупочная цена",
+    "name": "purchasePrice",
+    "checked": true
+  },
+  {
+    "label": "Скидка",
+    "name": "discountPercent",
+    "checked": true
+  },
+  {
+    "label": "Картинка",
+    "name": "imgUrl",
+    "checked": true
+  }
+]

@@ -40,9 +40,14 @@
       "@features/*": ["src/features/*"],
       "@store/*": ["src/store/*"],
       "@store": ["src/store/index.ts"],
+      "@api/*": ["src/api/*"],
+      "@api": ["src/api/index.ts"],
+      "@database": ["src/database/index.ts"],
+      "@mocks": ["src/mocks/index.ts"],
     }
   },
   "include": [
-    "src/**/*.*"
-, "tsconfig.eslint.json"  ],
+    "src/**/*.*",
+    "tsconfig.eslint.json"
+  ],
 }

@@ -3,6 +3,12 @@ import { Header } from "@src/components/Header";
 import { Sidebar } from "@src/components/Sidebar";
 import { AppRoutes } from "./AppRoutes";
 
+if (process.env.NODE_ENV === "development") {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { worker } = require("@mocks");
+  worker.start();
+}
+
 export const App = () => (
   <>
     <Sidebar />

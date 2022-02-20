@@ -1,0 +1,122 @@
+[
+  {
+    "id": "001",
+    "title": "Огурцы короткоплодные",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 450,
+    "discountPrice": 405,
+    "discountPercent": 10,
+    "purchasePrice": 150,
+    "imgUrl": "/veg/3eaa19ade7c1057dfd74aa2484ce50d041bb11ac_m650.jpg"
+  },
+  {
+    "id": "002",
+    "title": "Авокадо Хаас",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 240,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 50,
+    "imgUrl": "veg/30c6cb485afc5efca7c33f6ea9fa64e58f324215_m650_a6b1d5e053c334c2f16df4584c8d774436e7570e2f3cb74e6c057bbf908fc4fa.jpg"
+  },
+  {
+    "id": "003",
+    "title": "Картофель",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 250,
+    "discountPrice": 225,
+    "discountPercent": 10,
+    "purchasePrice": 50,
+    "imgUrl": "veg/e436881be11a15bf691a9dba24cc80e6bf660fea_m650.jpg"
+  },
+  {
+    "id": "004",
+    "title": "Чеснок",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 50,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 5,
+    "imgUrl": "/veg/e298558da9f7c7c4f4b956d2658cc8ce574f2ed6_m650.jpg"
+  },
+  {
+    "id": "005",
+    "title": "Капуста цветная",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 100,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 20,
+    "imgUrl": "veg/bcac0037f60c16bf1e0abc8b8beb5545ad3093c2_m650.jpg"
+  },
+  {
+    "id": "006",
+    "title": "Капуста брокколи",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 150,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 40,
+    "imgUrl": "veg/dd25de3616d756022d32da571eb43b58a6750874_m650.jpg"
+  },
+  {
+    "id": "007",
+    "title": "Кабачки",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 200,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 40,
+    "imgUrl": "veg/27fcb2d8211407171277184fb8808d84a900bc0a_m650_108d9895015712961b28aa8d5a239ac7c03135e8a2b8ddb84170204229d45988.jpg"
+  },
+  {
+    "id": "008",
+    "title": "Перец красный",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 200,
+    "discountPrice": 160,
+    "discountPercent": 20,
+    "purchasePrice": 40,
+    "imgUrl": "veg/02b4deb4d1f94cb0bda1ca8568f9ebfc61e2b65f_m650.jpg"
+  },
+  {
+    "id": "009",
+    "title": "Лук красный",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 40,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 5,
+    "imgUrl": "veg/2abd41bbcc96bd7e7c68f5b16d6d2fada905146b_m650.jpg"
+  },
+  {
+    "id": "0010",
+    "title": "Редис красный",
+    "desc": null,
+    "categoryName": "Овощи",
+    "category": "Veg",
+    "price": 100,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 20,
+    "imgUrl": "veg/a034a2b94be44041ca3fe8ed182e64b920a7d68b_m650.jpg"
+  }
+]

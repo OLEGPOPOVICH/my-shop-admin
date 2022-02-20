@@ -30,7 +30,7 @@ const columns = [
       <WrapperImg maxHeight="100%" maxWidth="100%">
         <img
           className="productListImg"
-          src={params.row.imgUrl}
+          src={`../images/${params.row.imgUrl}`}
           alt={params.row.title}
         />
       </WrapperImg>

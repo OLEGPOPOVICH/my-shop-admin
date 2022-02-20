@@ -1,25 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
-import { products, settingsFieldsForProducts } from "@src/data";
-import { ProductType, SettingsFieldType } from "@src/features/products/ducks";
-import { delay } from "./api";
-import { FilterData, FilterDataType } from "./utils";
+import { AxiosRequestConfig } from "axios";
+import api from "./api";
+import { ResponseTypeItem, ResponseTypeList } from "./types";
 
-export type ProductsAPIGet = {
-  currentPage?: number;
-  countDataPerPage?: number;
-};
+export const PRODUCTS_URL = "/products";
+export const PRODUCTS_SETTING_FIELDS_URL = "/products/settings-fields";
 
 export const productsAPI = {
-  getProducts: ({ currentPage, countDataPerPage }: ProductsAPIGet) => {
-    const filterData = new FilterData(products)
-      .getDataPage(currentPage, countDataPerPage)
-      .getData();
-    return delay<FilterDataType<ProductType>>(filterData, 500);
-  },
-  getSettingsFields: () => {
-    const filterData = new FilterData(settingsFieldsForProducts).getData();
+  getProducts: <T>(config: AxiosRequestConfig) =>
+    api.get<ResponseTypeList<T>>(PRODUCTS_URL, config),
 
-    return delay<FilterDataType<SettingsFieldType>>(filterData, 500);
-  },
+  getProduct: <T>(config: AxiosRequestConfig) =>
+    api.get<ResponseTypeItem<T>>(PRODUCTS_URL, config),
+
+  getSettingsFields: <T>() =>
+    api.get<ResponseTypeList<T>>(PRODUCTS_SETTING_FIELDS_URL),
 };

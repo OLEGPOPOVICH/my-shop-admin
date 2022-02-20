@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 import { Dispatch } from "react";
 
-import { productsAPI, ProductsAPIGet } from "@src/api/products";
+import { productsAPI } from "@api";
+import { ParamsListType } from "@database";
 import { LoaderActionType, removeLoader, setLoader } from "@features/loaders";
 import {
   ProductActionType,
@@ -9,18 +11,22 @@ import {
   setSettingsFields,
   setSettingsFieldsError,
 } from "./actions";
+import { ProductType, SettingsFieldType } from "./ducks";
 
 export const getProductsThunkCreator =
-  (params: ProductsAPIGet = {}) =>
+  (params: ParamsListType = {}) =>
   async (dispatch: Dispatch<ProductActionType | LoaderActionType>) => {
     dispatch(setLoader("products"));
 
     try {
-      const response = await productsAPI.getProducts(params);
+      const { data, total } = await productsAPI.getProducts<ProductType>({
+        params,
+      });
+
       dispatch(
         setProducts({
-          products: response.data,
-          total: response.total,
+          products: data,
+          total,
         })
       );
     } catch (error) {
@@ -36,8 +42,8 @@ export const getSettingsFieldsThunkCreator =
     dispatch(setLoader("settingsFields"));
 
     try {
-      const response = await productsAPI.getSettingsFields();
-      dispatch(setSettingsFields(response.data));
+      const { data } = await productsAPI.getSettingsFields<SettingsFieldType>();
+      dispatch(setSettingsFields(data));
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : error;
       dispatch(setSettingsFieldsError(errorMsg as string));

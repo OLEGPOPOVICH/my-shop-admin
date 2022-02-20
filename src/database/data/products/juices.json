@@ -1,0 +1,122 @@
+[
+  {
+    "id": "0001",
+    "title": "Вода детская ФрутоНяня",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 25,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 5,
+    "imgUrl": "juices/825c7885ddbe600b613ffd3904ecc90ea39469d3_m650_59a8825cecb46c3a8d776f5ca70187bf06123deb0651d5a02da674c489793a5b.jpg"
+  },
+  {
+    "id": "0002",
+    "title": "Сок J7 яблоко",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 80,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 10,
+    "imgUrl": "juices/d9feb999ac3d815af9db19e19b888d0186e9c217_m650_aea696313eef882c3891bad33fd677b821dcabdfaa419fde93642ae0ad017ec6.jpg"
+  },
+  {
+    "id": "0003",
+    "title": "Сок Агуша груша осветленный",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 20,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 3,
+    "imgUrl": "juices/1de7ef6cac0c1baa171c154c83c413c3411a4d0f_m650.jpg"
+  },
+  {
+    "id": "0004",
+    "title": "Нектар Фруктовый Сад персик-яблоко",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 100,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 10,
+    "imgUrl": "/juices/91f1b2286a60cd89994dbda15abd99af4d31ba17_m650_38603ad3fbd6e5b1a7128572f900a39fbbae1b1a52b653ce74aafb91dbcda227.jpg"
+  },
+  {
+    "id": "0005",
+    "title": "Нектар Swell Манго-Апельсин",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 100,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 10,
+    "imgUrl": "juices/ae243ad9efdb324d74005087d1af528911af16c7_m650.jpg"
+  },
+  {
+    "id": "0006",
+    "title": "Вода питьевая минеральная Нарзан газированная лечебно-столовая",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 60,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 5,
+    "imgUrl": "juices/dcaecdc7d5cbe2f33de65b140a5ebdd72fa3a29d_m650.jpg"
+  },
+  {
+    "id": "0007",
+    "title": "Сок Nar гранатовый",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 180,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 20,
+    "imgUrl": "juices/329ab214cf5f5cc41b47a66fa3e44fd1bd957ca5_m650.jpg"
+  },
+  {
+    "id": "0008",
+    "title": "Сок Gerber Яблочный первая ступень осветленный",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 100,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 15,
+    "imgUrl": "juices/f1bad60c7cdf9c0166ff9da932fa100d21e2a8d6_m650.jpg"
+  },
+  {
+    "id": "0009",
+    "title": "Сок Absolute Nature облепиховый прямого отжима концентрированный",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 350,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 50,
+    "imgUrl": "juices/3e98f50ba15e63fa2ff64395562cc487e97651c1_m650.jpg"
+  },
+  {
+    "id": "00010",
+    "title": "Напиток сокосодержащий Rich яблоко-вишня-грейпфрут",
+    "desc": null,
+    "categoryName": "Соки",
+    "category": "juices",
+    "price": 80,
+    "discountPrice": null,
+    "discountPercent": null,
+    "purchasePrice": 20,
+    "imgUrl": "juices/b10eddb903613c61003649e30684f98df650d431_m650.jpg"
+  }
+]
