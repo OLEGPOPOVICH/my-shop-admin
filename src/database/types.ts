@@ -4,6 +4,7 @@ export type FilterDataType<T> = {
 };
 
 export type ParamsListType = {
-  currentPage?: number | undefined;
-  countDataPerPage?: number | undefined;
+  ids?: string;
+  currentPage?: number;
+  countDataPerPage?: number;
 };

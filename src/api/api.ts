@@ -13,4 +13,13 @@ export default {
   get<R>(url: string, config?: AxiosRequestConfig) {
     return api.get<R>(url, config).then((data) => data.data);
   },
+  post<R>(url: string, data: any, config?: AxiosRequestConfig) {
+    return api.post<R>(url, data, config).then((data) => data.data);
+  },
+  patch<R>(url: string, data?: any, config?: AxiosRequestConfig) {
+    return api.patch<R>(url, data, config).then((data) => data.data);
+  },
+  delete<R>(url: string, config?: AxiosRequestConfig) {
+    return api.delete<R>(url, config).then((data) => data.data);
+  },
 };

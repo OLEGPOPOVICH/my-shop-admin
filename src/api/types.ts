@@ -4,6 +4,10 @@ type MetaType = {
   desc: string | null;
 };
 
+export type ResponseMetaType = {
+  meta: MetaType;
+};
+
 export type ResponseTypeList<T> = {
   data: T[];
   total: number;

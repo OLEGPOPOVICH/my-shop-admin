@@ -10,7 +10,7 @@ import {
 import { Grid } from "@src/components/Styles";
 
 import {
-  ProductItem,
+  Product,
   productsDataSelectors,
   productsErrorSelectors,
   settingsFieldsSelectors,
@@ -18,11 +18,16 @@ import {
   getProductsThunkCreator,
   getSettingsFieldsThunkCreator,
   settingsFieldsErrorSelectors,
+  ProductType,
+  setProducts,
+  setSettingsFields,
 } from "@src/features/products";
 import { LoaderWrap, loadersSelectors } from "@src/features/loaders";
 
 type ProductsViewGridType = {
   isSettingsViewProduct: boolean;
+  productIds: string[];
+  selectProduct: (isSelected: boolean, id: string) => void;
 };
 
 type SettingsFieldsType = { [k: string]: boolean };
@@ -36,9 +41,12 @@ const convertSettingFields = (settings: SettingsFieldType[]) =>
 
 export const ProductsViewGrid = ({
   isSettingsViewProduct,
+  productIds,
+  selectProduct,
 }: ProductsViewGridType) => {
   const dispatch = useDispatch();
   const [currentPage, setPage] = useState(1);
+
   const [selectedFields, setSelectedFields] = useState<SettingsFieldsType>({});
   const loaders = useSelector(loadersSelectors());
   const productsData = useSelector(productsDataSelectors());
@@ -62,6 +70,10 @@ export const ProductsViewGrid = ({
     setPage(value);
   };
 
+  const handleSelectProduct = (isSelected: boolean, product: ProductType) => {
+    selectProduct(isSelected, product.id);
+  };
+
   useEffect(() => {
     if (!Object.keys(selectedFields).length) {
       setSelectedFields(convertSettingFields(settingsFields));
@@ -79,6 +91,16 @@ export const ProductsViewGrid = ({
         countDataPerPage,
       })
     );
+
+    return () => {
+      dispatch(
+        setProducts({
+          products: [],
+          total: 0,
+        })
+      );
+      dispatch(setSettingsFields([]));
+    };
   }, [currentPage]);
 
   return (
@@ -89,8 +111,7 @@ export const ProductsViewGrid = ({
           sx={{
             padding: "15px",
             marginBottom: "20px",
-            borderRadius: "6px",
-            border: "1px solid #ffba00",
+            backgroundColor: "white",
           }}
         >
           <LoaderWrap
@@ -122,10 +143,12 @@ export const ProductsViewGrid = ({
       >
         <Grid
           data={productsData.products.map((product) => (
-            <ProductItem
+            <Product
               key={product.id}
               product={product}
+              isSelected={productIds.includes(product.id)}
               viewFields={selectedFields}
+              selectProduct={handleSelectProduct}
             />
           ))}
         ></Grid>

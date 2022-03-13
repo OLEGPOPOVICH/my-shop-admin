@@ -17,6 +17,11 @@ body {
   flex-direction: column;
   min-height: 100vh;
   padding-left: 250px;
+  background-color: #edeeee;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 .profile {
@@ -60,6 +65,19 @@ ul {
 }
 
 .page {
-  border-top: 1px solid #ffba00;
-  padding: 1rem 0;
+  padding: 32px 0;
+}
+
+img {
+  display: block;
+}
+
+
+
+.margin-bottom-32 {
+  margin-bottom: 32px;
+}
+
+.margin-top-32 {
+  margin-top: 32px;
 }
