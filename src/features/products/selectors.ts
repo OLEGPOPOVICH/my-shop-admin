@@ -3,6 +3,9 @@ import { RootReducerType } from "@store";
 export const productsDataSelectors = () => (state: RootReducerType) =>
   state.productsReducer.productsData;
 
+export const productsDataForEditSelectors = () => (state: RootReducerType) =>
+  state.productsReducer.productsDataForEdit;
+
 export const productsSelectors = () => (state: RootReducerType) =>
   state.productsReducer.productsData.products;
 

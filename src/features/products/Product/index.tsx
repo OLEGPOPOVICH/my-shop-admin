@@ -1,55 +1,54 @@
 import React from "react";
-import styled from "styled-components";
 import { DiscountPrice } from "@src/components/Styles";
-import { IconButton, Img } from "@src/components/UI";
+import { Checkbox, Img } from "@src/components/UI";
+import { ProductType, ViewFieldsType } from "../types";
 
-import { ProductType } from "../ducks";
+import "./Product";
 
-import "./product.scss";
-
-export type ViewFieldsType<T> = { [K in keyof T]?: boolean };
-
-type ProductItemType<T> = {
+export type ProductComponentType = {
   product: ProductType;
-  viewFields: ViewFieldsType<T>;
+  isSelected: boolean;
+  viewFields?: ViewFieldsType<ProductType>;
+  selectProduct?: (isSelected: boolean, product: ProductType) => void;
 };
 
-const CardActions = styled.div`
-  & button:hover {
-    &.btn-edit {
-      color: #ffba00;
-    }
-    &.btn-remove {
-      color: #f50057;
-    }
-  }
-`;
-
-export const ProductItem = ({
+export const Product = ({
   product,
-  viewFields,
-}: ProductItemType<ProductType>): JSX.Element => {
+  isSelected,
+  viewFields = {},
+  selectProduct,
+}: ProductComponentType): JSX.Element => {
   const isViewFields = Object.keys(viewFields).length;
+
+  const handleSelectChange = (product: ProductType) => () => {
+    if (selectProduct) {
+      selectProduct(isSelected, product);
+    }
+  };
 
   return (
     <div className="card">
-      <div className="card_header">
+      <div className="card__header">
         {product.imgUrl && (!isViewFields || viewFields.imgUrl) ? (
-          <div className="card_img">
+          <div className="card__img">
             <Img
-              src={`../images/${product.imgUrl}`}
-              alt={product.title ? product.title : ""}
+              src={`${
+                product.imgUrl
+                  ? `../images/${product.imgUrl}`
+                  : "../images/no-image.png"
+              }`}
+              alt={product.title || ""}
             />
           </div>
         ) : null}
-        <div className="card_wrap_actions">
-          <CardActions className="card_actions">
-            <IconButton className="btn-edit">edit</IconButton>
-            <IconButton className="btn-remove">delete_forever</IconButton>
-          </CardActions>
+        <div className="card__actions">
+          <Checkbox
+            checked={isSelected}
+            onChange={handleSelectChange(product)}
+          />
         </div>
       </div>
-      <div className="card_body">
+      <div className="card__body">
         <div className="card__title">{product.title}</div>
         {product.desc && (!isViewFields || viewFields.desc) ? (
           <div className="card__desc">{product.desc}</div>

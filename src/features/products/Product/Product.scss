@@ -3,8 +3,9 @@
   padding: 15px;
   border-radius: 6px;
   box-shadow: 2px 6px 17px 0px rgba(0, 0, 0, 0.18);
+  background-color: white;
 
-  &_header {
+  &__header {
     position: relative;
     min-height: 58px;
     background-color: #f3f1f1;
@@ -19,7 +20,7 @@
     }
   }
 
-  &_wrap_actions {
+  &__actions {
     position: absolute;
     top: 0;
     left: 0;
@@ -30,7 +31,7 @@
     overflow: hidden;
   }
 
-  &_actions {
+  &__actions {
     position: absolute;
     top: 0;
     right: -36px;
@@ -44,7 +45,7 @@
     }
   }
 
-  &_img {
+  &__img {
     overflow: hidden;
     height: 200px;
     background-color: white;
@@ -57,7 +58,7 @@
     }
   }
 
-  &_body {
+  &__body {
     padding-top: 15px;
   }
 
