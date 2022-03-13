@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import {
   Person,
@@ -8,33 +8,33 @@ import {
   BarChart,
 } from "@components/UI/icons";
 
-import "./sidebarMenu";
+import "./SidebarMenu";
 
 export const SidebarMenu = () => (
   <ul className="menu">
     <li className="menu__item">
-      <Link to="/users">
+      <NavLink to="/users" activeClassName="active">
         <Person />
         <span>Пользователи</span>
-      </Link>
+      </NavLink>
     </li>
     <li className="menu__item">
-      <Link to="/orders">
+      <NavLink to="/orders" activeClassName="active">
         <ShoppingBasket />
         <span>Заказы</span>
-      </Link>
+      </NavLink>
     </li>
     <li className="menu__item">
-      <Link to="/products">
+      <NavLink to="/products" activeClassName="active">
         <Extension />
         <span>Продукты</span>
-      </Link>
+      </NavLink>
     </li>
     <li className="menu__item">
-      <Link to="/analytics">
+      <NavLink to="/analytics" activeClassName="active">
         <BarChart />
         <span>Аналитика</span>
-      </Link>
+      </NavLink>
     </li>
   </ul>
 );

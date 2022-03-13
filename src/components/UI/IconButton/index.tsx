@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes } from "react";
 import { Icon, SxProps } from "../Icon";
-import "./iconButton";
+import "./IconButton";
 
 type IconButtonType = ButtonHTMLAttributes<HTMLButtonElement> & {
   sx?: SxProps;
@@ -11,7 +11,7 @@ export const IconButton = ({
   sx,
   ...props
 }: IconButtonType): JSX.Element => (
-  <button className={`btn_icon ${className}`} {...props}>
+  <button className={`btn__icon ${className}`} {...props}>
     <Icon sx={sx}>{props.children}</Icon>
   </button>
 );

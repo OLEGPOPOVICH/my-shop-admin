@@ -1,4 +1,4 @@
-import { products, settingsFields } from "./data/products/products";
+import { products, settingsFields } from "@src/database/data/products/products";
 import { ParamsListType } from "./types";
 import { DBData } from "./utils";
 

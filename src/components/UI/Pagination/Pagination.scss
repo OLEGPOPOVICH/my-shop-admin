@@ -1,0 +1,11 @@
+.MuiPagination-ul {
+  & .css-kvsszq-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: #107f8c;
+    color: white;
+  }
+
+  & .css-kvsszq-MuiButtonBase-root-MuiPaginationItem-root.Mui-disabled,
+  & .css-kvsszq-MuiButtonBase-root-MuiPaginationItem-root {
+    background-color: white;
+  }
+}

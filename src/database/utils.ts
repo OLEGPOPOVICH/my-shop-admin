@@ -1,6 +1,10 @@
 import { FilterDataType, ParamsListType } from "./types";
 
-export class FilterData<T> {
+type Params = {
+  id?: string;
+  [key: string]: unknown;
+};
+export class FilterData<T extends Params> {
   private filterData: FilterDataType<T> = {
     data: [],
     total: 0,
@@ -26,12 +30,28 @@ export class FilterData<T> {
     return this;
   }
 
+  getDataByIds({ ids }: ParamsListType) {
+    const idList = ids?.split(",");
+
+    if (idList?.length) {
+      this.filterData.data = this.filterData.data.filter((dataItem) => {
+        if (dataItem.id) {
+          return idList.includes(dataItem.id);
+        }
+
+        return false;
+      });
+    }
+
+    return this;
+  }
+
   getData(): FilterDataType<T> {
     return this.filterData;
   }
 }
 
-export class DBData<T> {
+export class DBData<T extends Params> {
   private data = [] as T[];
 
   constructor(data: T[]) {
@@ -39,6 +59,9 @@ export class DBData<T> {
   }
 
   getList(params: ParamsListType = {}) {
-    return new FilterData<T>(this.data).getDataPage(params).getData();
+    return new FilterData<T>(this.data)
+      .getDataByIds(params)
+      .getDataPage(params)
+      .getData();
   }
 }

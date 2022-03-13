@@ -1,8 +1,9 @@
 export {
   addProduct,
-  removeProduct,
+  deleteProducts,
   editProduct,
   setProducts,
+  setProductsForEdit,
   setProductsError,
   setSettingsFields,
   setSettingsFieldsError,
@@ -11,13 +12,25 @@ export {
 export {
   getProductsThunkCreator,
   getSettingsFieldsThunkCreator,
+  deleteProductThunkCreator,
+  getProductsByIdsThunkCreator,
+  saveProductsThunkCreator,
+  addProductThunkCreator,
 } from "./actionsThunk";
-export { productsReducer, ProductType, SettingsFieldType } from "./ducks";
-export { ProductItem, ViewFieldsType } from "./ProductItem";
+export { productsReducer } from "./ducks";
+export { Product } from "./Product";
+export { ProductControl } from "./ProductControl";
 export { ProductsTable } from "./ProductsTable";
-export { ViewType } from "./types";
+export {
+  ViewType,
+  ProductType,
+  ViewFieldsType,
+  SettingsFieldType,
+  ProductsSaveType,
+} from "./types";
 export {
   productsDataSelectors,
+  productsDataForEditSelectors,
   productsSelectors,
   productsErrorSelectors,
   settingsFieldsSelectors,

@@ -1,7 +1,7 @@
 /* eslint-disable require-jsdoc */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, GridRenderCellParams } from "@src/components/UI";
+import { Box, DataGridType, GridRenderCellParams } from "@src/components/UI";
 import { WrapperText, WrapperImg, DiscountPrice } from "@src/components/Styles";
 import {
   ProductsTable,
@@ -121,7 +121,15 @@ const columns = [
   },
 ];
 
-export const ProductsViewTable = () => {
+type ProductsViewTableType = Pick<
+  DataGridType,
+  "onSelectionModelChange" | "selectionModel"
+>;
+
+export const ProductsViewTable = ({
+  onSelectionModelChange,
+  selectionModel,
+}: ProductsViewTableType) => {
   const dispatch = useDispatch();
   const loaders = useSelector(loadersSelectors());
   const productsError = useSelector(productsErrorSelectors());
@@ -146,6 +154,8 @@ export const ProductsViewTable = () => {
           columns={columns}
           pageSize={countDataPerPage}
           rowHeight={120}
+          onSelectionModelChange={onSelectionModelChange}
+          selectionModel={selectionModel}
         />
       </Box>
     </LoaderWrap>

@@ -8,6 +8,8 @@ export const ProductsTable = ({
   rowHeight,
   getCellClassName,
   onPageChange,
+  onSelectionModelChange,
+  selectionModel,
 }: DataGridType): JSX.Element => (
   <DataGrid
     rows={rows}
@@ -16,5 +18,7 @@ export const ProductsTable = ({
     rowHeight={rowHeight}
     getCellClassName={getCellClassName}
     onPageChange={onPageChange}
+    onSelectionModelChange={onSelectionModelChange}
+    selectionModel={selectionModel}
   />
 );
