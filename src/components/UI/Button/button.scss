@@ -6,6 +6,7 @@ button {
   font-weight: 500;
   line-height: 1.7 !important;
   text-transform: uppercase !important;
+  background-color: #c9cbcd;
 
   cursor: pointer;
 
@@ -20,6 +21,10 @@ button {
   &.danger {
     background-color: #f50057;
     color: white;
+  }
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: no-drop;
   }
 }

@@ -5,6 +5,7 @@ import {
   GridColDef,
   GridCellParams,
   GridCallbackDetails,
+  GridSelectionModel,
 } from "@mui/x-data-grid";
 
 export {
@@ -15,6 +16,8 @@ export {
   GridValueGetterParams,
   GridValueGetterFullParams,
   GridCellParams,
+  GridCallbackDetails,
+  GridSelectionModel,
 } from "@mui/x-data-grid";
 
 type getCellClassName = (params: GridCellParams) => string;
@@ -26,6 +29,11 @@ export type DataGridType = {
   rowHeight: number;
   getCellClassName?: undefined | getCellClassName;
   onPageChange?: (page: number, details: GridCallbackDetails) => void;
+  onSelectionModelChange?: (
+    selectionModel: GridSelectionModel,
+    details: GridCallbackDetails
+  ) => void;
+  selectionModel?: GridSelectionModel;
 };
 
 export const DataGrid = ({
@@ -35,6 +43,8 @@ export const DataGrid = ({
   rowHeight,
   getCellClassName,
   onPageChange,
+  onSelectionModelChange,
+  selectionModel,
 }: DataGridType): JSX.Element => (
   <DataGridM
     rows={rows}
@@ -45,5 +55,7 @@ export const DataGrid = ({
     getCellClassName={getCellClassName}
     checkboxSelection
     onPageChange={onPageChange}
+    onSelectionModelChange={onSelectionModelChange}
+    selectionModel={selectionModel}
   />
 );
