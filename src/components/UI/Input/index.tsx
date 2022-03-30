@@ -1,24 +1,31 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { forwardRef, InputHTMLAttributes } from "react";
+import { Info } from "@components/UI";
 import "./Input";
+
+type ErrorType = {
+  message: string;
+};
 
 type InputType = {
   label?: string;
-  message?: string;
+  error?: ErrorType;
   elemRight?: string;
 };
 
-export const Input = ({
-  label,
-  message,
-  elemRight,
-  ...other
-}: InputType & InputHTMLAttributes<HTMLInputElement>): JSX.Element => (
+export const Input = forwardRef<
+  HTMLInputElement,
+  InputType & InputHTMLAttributes<HTMLInputElement>
+>(({ label, elemRight, error, ...other }, ref) => (
   <div className="input__box">
     {label ? <div className="input__label">{label}</div> : null}
     <div className="input__wrap">
-      <input className="input" {...other}></input>
+      <input ref={ref} className="input" {...other}></input>
       {elemRight ? <div className="input__right">{elemRight}</div> : null}
     </div>
-    {message ? <div className="input__message">{message}</div> : null}
+    {error ? (
+      <div className="input__message">
+        <Info color="error" fontSize="small" /> {error.message}
+      </div>
+    ) : null}
   </div>
-);
+));

@@ -7,7 +7,7 @@ type IconButtonType = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export const IconButton = ({
-  className,
+  className = "",
   sx,
   ...props
 }: IconButtonType): JSX.Element => (

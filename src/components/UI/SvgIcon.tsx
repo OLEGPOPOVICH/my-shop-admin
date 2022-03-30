@@ -4,7 +4,7 @@ import { SvgIconProps } from "@mui/material/SvgIcon";
 import { SvgIcon as SvgIconM } from "@mui/material";
 
 type SvgIconType = {
-  props: SvgIconProps;
+  props?: SvgIconProps;
   srcSvg: string;
   className?: string;
 };

@@ -6,7 +6,14 @@
   }
 
   &__message {
+    display: flex;
+    align-items: center;
     margin-top: 8px;
+    font-size: 14px;
+
+    & > svg {
+      margin-right: 5px;
+    }
   }
 
   &__wrap {
@@ -47,5 +54,13 @@
     font-weight: 500;
     line-height: normal;
     white-space: nowrap;
+  }
+
+  &[disabled] {
+    background: transparent url(./disabled.png) repeat!important;
+    background-size: 4px 4px!important;
+    border-color: transparent!important;
+    color: #a9a9a9!important;
+    cursor: not-allowed!important;
   }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { SidebarMenu } from "@src/components/SidebarMenu";
-import { HeadsetMic } from "@components/UI/icons";
+import { HeadsetMic } from "@components/UI";
 
 import "./sidebar";
 
