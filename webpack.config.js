@@ -121,8 +121,10 @@ module.exports = {
       "@components": path.resolve(__dirname, 'src/components'),
       "@features": path.resolve(__dirname, 'src/features'),
       "@pages": path.resolve(__dirname, 'src/pages'),
+      "@services": path.resolve(__dirname, 'src/services'),
       "@store": path.resolve(__dirname, 'src/store'),
       "@api": path.resolve(__dirname, 'src/api'),
+      "@utils": path.resolve(__dirname, 'src/utils'),
       "@database": path.resolve(__dirname, 'src/database'),
       "@mocks": path.resolve(__dirname, 'src/mocks'),
     }

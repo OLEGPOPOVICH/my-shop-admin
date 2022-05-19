@@ -12,6 +12,8 @@
 - [styled-components](https://styled-components.com/)
 - [Mock Service Worker](https://mswjs.io/)
 - [axios](https://axios-http.com/ru/docs/api_intro)
+- [Socket.io](https://socket.io/docs/v4/client-api/)
+- [yup](https://www.npmjs.com/package/yup)
 
 ### Запуск проекта
 
