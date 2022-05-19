@@ -1,0 +1,8 @@
+.chat__audio {
+  display: flex;
+  width: 100%;
+
+  &-revert {
+    flex-direction: row-reverse;
+  }
+}
