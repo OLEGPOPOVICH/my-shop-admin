@@ -38,10 +38,12 @@
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@features/*": ["src/features/*"],
+      "@services": ["src/services/index.ts"],
       "@store/*": ["src/store/*"],
       "@store": ["src/store/index.ts"],
       "@api/*": ["src/api/*"],
       "@api": ["src/api/index.ts"],
+      "@utils": ["src/utils/index.ts"],
       "@database": ["src/database/index.ts"],
       "@mocks": ["src/mocks/index.ts"],
     }

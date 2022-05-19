@@ -197,7 +197,7 @@
         ],
         "linebreak-style": ["error", "unix"],
         "lines-between-class-members": ["error", "always"],
-        "max-depth": ["error", 2],
+        "max-depth": ["error", 4],
         "multiline-comment-style": ["error", "starred-block"],
         "newline-per-chained-call": [
           "error",

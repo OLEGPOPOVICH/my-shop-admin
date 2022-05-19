@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   Box,
   Pagination,
@@ -8,7 +7,6 @@ import {
   Checkbox,
 } from "@src/components/UI";
 import { Grid } from "@src/components/Styles";
-
 import {
   Product,
   productsDataSelectors,
@@ -91,8 +89,10 @@ export const ProductsViewGrid = ({
         countDataPerPage,
       })
     );
+  }, [currentPage]);
 
-    return () => {
+  useEffect(
+    () => () => {
       dispatch(
         setProducts({
           products: [],
@@ -100,8 +100,9 @@ export const ProductsViewGrid = ({
         })
       );
       dispatch(setSettingsFields([]));
-    };
-  }, [currentPage]);
+    },
+    []
+  );
 
   return (
     <>

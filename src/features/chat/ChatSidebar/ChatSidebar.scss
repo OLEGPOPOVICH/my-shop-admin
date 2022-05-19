@@ -1,0 +1,41 @@
+.chat__sidebar {
+  position: relative;
+  min-width: 300px;
+  width: 300px;
+  padding-top: 100px;
+  border-right: 1px solid #c9cbcd;
+  overflow: hidden;
+  background-color: white;
+
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #c9cbcd;
+
+  }
+
+  &__actions {
+    padding: 5px 15px;
+    border-top: 1px solid #c9cbcd;
+
+    & > .tag-selected {
+      background-color: rgb(85, 172, 238);
+      color: white;
+    }
+  }
+
+  &__body {
+    background-color: white;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+
+    & > div:nth-child(n + 2) {
+      border-top: 1px solid #c9cbcd;
+    }
+  }
+}

@@ -1,12 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import {
-  Person,
-  ShoppingBasket,
-  Extension,
-  BarChart,
-} from "@components/UI/icons";
+import { Person, ShoppingBasket, Extension, BarChart } from "@components/UI";
 
 import "./SidebarMenu";
 

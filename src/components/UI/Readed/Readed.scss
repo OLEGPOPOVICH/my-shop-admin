@@ -1,0 +1,30 @@
+.readed {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+
+  &-complete {
+    width: 30px;
+
+    & svg:first-child {
+      position: absolute;
+      right: 12px;
+    }
+  }
+
+  &-gray svg {
+    fill: #edeeee;
+  }
+
+  &-green svg {
+    fill: #00c200;
+  }
+
+  &-blue svg {
+    fill: #6dbeff;
+  }
+
+  &-red svg {
+    fill: #f50057;
+  }
+}
