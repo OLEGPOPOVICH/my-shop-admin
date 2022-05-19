@@ -28,6 +28,7 @@ export { Box } from "./Box";
 export { Button } from "./Button";
 export { IconButton } from "./IconButton";
 export { Input } from "./Input";
+export { InputSearch } from "./InputSearch";
 export { Textarea } from "./Textarea";
 export { Pagination } from "./Pagination";
 export { FormControlLabel } from "./FormControlLabel";
@@ -45,3 +46,6 @@ export {
 } from "./Avatar/types";
 export { Typing } from "./Typing";
 export { Readed } from "./Readed";
+export { FieldMessage } from "./FieldMessage";
+export { Tag } from "./Tag";
+export { AudioPlayer } from "./AudioPlayer";

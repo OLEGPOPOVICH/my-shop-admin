@@ -1,4 +1,4 @@
-import React, { forwardRef, InputHTMLAttributes } from "react";
+import React, { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 import { Info } from "@components/UI";
 import "./Input";
 
@@ -9,7 +9,7 @@ type ErrorType = {
 type InputType = {
   label?: string;
   error?: ErrorType;
-  elemRight?: string;
+  elemRight?: ReactNode | string;
 };
 
 export const Input = forwardRef<
