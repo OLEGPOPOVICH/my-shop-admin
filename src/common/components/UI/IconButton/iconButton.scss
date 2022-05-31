@@ -1,0 +1,15 @@
+.btn__icon {
+  padding: 6px;
+
+  > span {
+    display: block;
+  }
+
+  &-white {
+    background-color: white;
+  }
+
+  &.active {
+    background-color: #ffba00;
+  }
+}

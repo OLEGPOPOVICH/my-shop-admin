@@ -1,0 +1,29 @@
+.menu {
+  overflow: hidden;
+
+  &__item {
+    width: 100%;
+    cursor: pointer;
+
+
+    > a {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 0 15px;
+      text-decoration: none;
+      color: white;
+
+      &.active {
+        background-color: #edeeee;
+        color: black;
+      }
+
+
+      > span {
+        margin-left: 0.5rem;
+        line-height: 1.5;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+button {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px !important;
+  font-weight: 500;
+  line-height: 1.7 !important;
+  text-transform: uppercase !important;
+  background-color: #c9cbcd;
+
+  cursor: pointer;
+
+
+  &.primary {
+    background-color: #107f8c;
+    color: white;
+  }
+  &.secondary {
+    background-color: #ffba00;
+  }
+  &.danger {
+    background-color: #f50057;
+    color: white;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: no-drop;
+  }
+}
