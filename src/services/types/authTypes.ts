@@ -1,4 +1,4 @@
-import { AuthUserType } from "@src/features/auth";
+import { AuthUserType } from "@features/auth";
 
 export type AuthResponseType = {
   accessToken: string;

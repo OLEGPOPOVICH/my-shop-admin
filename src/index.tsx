@@ -4,18 +4,18 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { store } from "@store";
 import { HashRouter } from "react-router-dom";
-import { SocketIOClientProvider } from "./SocketIOClientProvider";
+import { ChatProvider } from "@common/context/chat";
 import { App } from "./App";
 
-import "./styles/scss.scss";
+import "@common/styles/scss.scss";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <HashRouter>
-        <SocketIOClientProvider>
+        <ChatProvider>
           <App />
-        </SocketIOClientProvider>
+        </ChatProvider>
       </HashRouter>
     </Provider>
   </React.StrictMode>,

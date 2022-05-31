@@ -1,5 +1,5 @@
-import { api, API_URL } from "@src/http";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { api } from "@common/http";
 import { ResponseType } from "./types";
 import {
   AuthResponseType,
@@ -26,12 +26,9 @@ export class AuthService {
   }
 
   static checkAuth(): Promise<AxiosResponseType> {
-    return axios.get<ResponseType<AuthResponseType>>(
-      `${API_URL}/${AUTH_URL.REFRESH}`,
-      {
-        withCredentials: true,
-      }
-    );
+    return api.get<ResponseType<AuthResponseType>>(`${AUTH_URL.REFRESH}`, {
+      withCredentials: true,
+    });
   }
 
   static register(data: RegisterRequestType): Promise<AxiosResponseType> {

@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import api from "./api";
 import { ResponseTypeItem, ResponseTypeList, ResponseMetaType } from "./types";
-import { ProductType } from "@src/features/products";
+import { ProductType } from "@features/products";
 
 export const ACTIONS_URL = {
   DELETE: "delete",
