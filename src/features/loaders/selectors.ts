@@ -1,4 +1,8 @@
 import { RootReducerType } from "@store";
 
-export const loadersSelectors = () => (state: RootReducerType) =>
+const getLoaders = () => (state: RootReducerType) =>
   state.loaderReducer.loaders;
+
+export const selectors = {
+  getLoaders,
+};

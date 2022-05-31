@@ -1,9 +1,4 @@
-import {
-  TOGGLE_GLOBAL_LOADER,
-  SET_LOADER,
-  REMOVE_LOADER,
-  LoaderActionType,
-} from "./actions";
+import { SET_LOADER, REMOVE_LOADER, LoaderActionType } from "./actions";
 
 const initialState = {
   globalLoader: false,
@@ -17,11 +12,6 @@ export const loaderReducer = (
   action: LoaderActionType
 ): InitialStateType => {
   switch (action.type) {
-    case TOGGLE_GLOBAL_LOADER:
-      return {
-        ...state,
-        globalLoader: !state.globalLoader,
-      };
     case SET_LOADER:
       return {
         ...state,
