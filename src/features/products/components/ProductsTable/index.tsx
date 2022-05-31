@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataGrid, DataGridType } from "@src/components/UI/";
+import { DataGrid, DataGridType } from "@common/components/UI";
 
 export const ProductsTable = ({
   rows,

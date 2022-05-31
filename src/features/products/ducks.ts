@@ -3,14 +3,12 @@ import {
   EDIT_PRODUCT,
   SET_PRODUCTS,
   DELETE_PRODUCTS,
-  SET_PRODUCTS_ERROR,
   SET_SETTINGS_FIELDS,
-  SET_SETTINGS_FIELDS_ERROR,
   ProductActionType,
   SET_PRODUCTS_FOR_EDIT,
   SAVE_PRODUCTS,
 } from "./actions";
-import { ErrorType, ProductType, SettingsFieldType } from "./types";
+import { ProductType, SettingsFieldType } from "./types";
 
 const initialState = {
   productsData: {
@@ -20,10 +18,6 @@ const initialState = {
   productsDataForEdit: {
     products: [] as ProductType[],
     total: 0,
-  },
-  errors: {
-    products: null as ErrorType,
-    settingsFields: null as ErrorType,
   },
   settingsFields: [] as SettingsFieldType[],
 };
@@ -39,27 +33,11 @@ export const productsReducer = (
       return {
         ...state,
         productsData: { ...action.payload },
-        errors: {
-          ...state.errors,
-          products: null,
-        },
-      };
-    case SET_PRODUCTS_ERROR:
-      return {
-        ...state,
-        errors: {
-          ...state.errors,
-          products: action.payload,
-        },
       };
     case SET_PRODUCTS_FOR_EDIT:
       return {
         ...state,
         productsDataForEdit: { ...action.payload },
-        errors: {
-          ...state.errors,
-          products: null,
-        },
       };
     case SAVE_PRODUCTS: {
       const { ids, products } = action.payload;
@@ -110,18 +88,6 @@ export const productsReducer = (
       return {
         ...state,
         settingsFields: [...action.payload],
-        errors: {
-          ...state.errors,
-          settingsFields: null,
-        },
-      };
-    case SET_SETTINGS_FIELDS_ERROR:
-      return {
-        ...state,
-        errors: {
-          ...state.errors,
-          settingsFields: action.payload,
-        },
       };
     default:
       return state;

@@ -1,7 +1,7 @@
 import React from "react";
-import { DiscountPrice } from "@src/components/Styles";
-import { Checkbox, Img } from "@src/components/UI";
-import { ProductType, ViewFieldsType } from "../types";
+import { DiscountPrice } from "@common/components/Styles";
+import { Checkbox, Img } from "@common/components/UI";
+import { ProductType, ViewFieldsType } from "../../types";
 
 import "./Product";
 

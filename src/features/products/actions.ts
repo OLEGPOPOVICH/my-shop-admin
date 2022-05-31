@@ -1,5 +1,4 @@
 import {
-  ErrorType,
   ProductsDataType,
   ProductType,
   ProductsSaveType,
@@ -12,9 +11,7 @@ export const EDIT_PRODUCT = "EDIT_PRODUCT";
 export const SET_PRODUCTS = "SET_PRODUCTS";
 export const SAVE_PRODUCTS = "SAVE_PRODUCTS";
 export const SET_PRODUCTS_FOR_EDIT = "SET_PRODUCTS_FOR_EDIT";
-export const SET_PRODUCTS_ERROR = "SET_PRODUCTS_ERROR";
 export const SET_SETTINGS_FIELDS = "SET_SETTINGS_FIELDS";
-export const SET_SETTINGS_FIELDS_ERROR = "SET_SETTINGS_FIELDS_ERROR";
 
 type AddProductActionType = {
   type: typeof ADD_PRODUCT;
@@ -46,19 +43,9 @@ type setProductsForEditActionType = {
   payload: ProductsDataType;
 };
 
-type setProductsErrorActionType = {
-  type: typeof SET_PRODUCTS_ERROR;
-  payload: ErrorType;
-};
-
 type setSettingsFieldsActionType = {
   type: typeof SET_SETTINGS_FIELDS;
   payload: SettingsFieldType[];
-};
-
-type setSettingsFieldsErrorActionType = {
-  type: typeof SET_SETTINGS_FIELDS_ERROR;
-  payload: ErrorType;
 };
 
 export type ProductActionType =
@@ -68,67 +55,53 @@ export type ProductActionType =
   | setProductsActionType
   | saveProductsActionType
   | setProductsForEditActionType
-  | setProductsErrorActionType
-  | setSettingsFieldsActionType
-  | setSettingsFieldsErrorActionType;
+  | setSettingsFieldsActionType;
 
-export const addProduct = (payload: ProductType): AddProductActionType => ({
+const addProduct = (payload: ProductType): AddProductActionType => ({
   type: ADD_PRODUCT,
   payload,
 });
 
-export const deleteProducts = (
-  payload: string[]
-): DeleteProductsActionType => ({
+const deleteProducts = (payload: string[]): DeleteProductsActionType => ({
   type: DELETE_PRODUCTS,
   payload,
 });
 
-export const editProduct = (
-  payload: Partial<ProductType>
-): EditProductActionType => ({
+const editProduct = (payload: Partial<ProductType>): EditProductActionType => ({
   type: EDIT_PRODUCT,
   payload,
 });
 
-export const setProducts = (
-  payload: ProductsDataType
-): setProductsActionType => ({
+const setProducts = (payload: ProductsDataType): setProductsActionType => ({
   type: SET_PRODUCTS,
   payload,
 });
 
-export const saveProducts = (
-  payload: ProductsSaveType
-): saveProductsActionType => ({
+const saveProducts = (payload: ProductsSaveType): saveProductsActionType => ({
   type: SAVE_PRODUCTS,
   payload,
 });
 
-export const setProductsForEdit = (
+const setProductsForEdit = (
   payload: ProductsDataType
 ): setProductsForEditActionType => ({
   type: SET_PRODUCTS_FOR_EDIT,
   payload,
 });
 
-export const setProductsError = (
-  payload: ErrorType
-): setProductsErrorActionType => ({
-  type: SET_PRODUCTS_ERROR,
-  payload,
-});
-
-export const setSettingsFields = (
+const setSettingsFields = (
   payload: SettingsFieldType[]
 ): setSettingsFieldsActionType => ({
   type: SET_SETTINGS_FIELDS,
   payload,
 });
 
-export const setSettingsFieldsError = (
-  payload: ErrorType
-): setSettingsFieldsErrorActionType => ({
-  type: SET_SETTINGS_FIELDS_ERROR,
-  payload,
-});
+export const actions = {
+  addProduct,
+  deleteProducts,
+  editProduct,
+  setProducts,
+  saveProducts,
+  setProductsForEdit,
+  setSettingsFields,
+};

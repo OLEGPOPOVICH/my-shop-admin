@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
-import { Img, Textarea, Input } from "@src/components/UI";
-import { ProductType } from "../types";
-import "./ProductControl.scss";
+import { Img, Textarea, Input } from "@common/components/UI";
+import { ProductType } from "../../types";
+import "./ProductControl";
 
 type ProductControlComponentType = {
   product: ProductType;

@@ -1,26 +1,8 @@
-export {
-  addProduct,
-  deleteProducts,
-  editProduct,
-  setProducts,
-  setProductsForEdit,
-  setProductsError,
-  setSettingsFields,
-  setSettingsFieldsError,
-  ProductActionType,
-} from "./actions";
-export {
-  getProductsThunkCreator,
-  getSettingsFieldsThunkCreator,
-  deleteProductThunkCreator,
-  getProductsByIdsThunkCreator,
-  saveProductsThunkCreator,
-  addProductThunkCreator,
-} from "./actionsThunk";
+export { actions as productsActions, ProductActionType } from "./actions";
 export { productsReducer } from "./ducks";
-export { Product } from "./Product";
-export { ProductControl } from "./ProductControl";
-export { ProductsTable } from "./ProductsTable";
+export { Product } from "./components/Product";
+export { ProductControl } from "./components/ProductControl";
+export { ProductsTable } from "./components/ProductsTable";
 export {
   ViewType,
   ProductType,
@@ -28,11 +10,4 @@ export {
   SettingsFieldType,
   ProductsSaveType,
 } from "./types";
-export {
-  productsDataSelectors,
-  productsDataForEditSelectors,
-  productsSelectors,
-  productsErrorSelectors,
-  settingsFieldsSelectors,
-  settingsFieldsErrorSelectors,
-} from "./selectors";
+export { selectors as productsSelectors } from "./selectors";
