@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Button, Input, FieldMessage } from "@src/components/UI";
+import { Button, Input, FieldMessage } from "@common/components/UI";
+import { WrapperForm } from "../WrapperForm";
 import { Confirm } from "../Confirm";
-import { registerActionThunk } from "../actionsThunk";
-import { errorSelectors, isRegisterSelectors } from "../selectors";
-import { setIsRegister } from "../actions";
+import { ErrorType, UserRegisterType } from "../../types";
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -28,13 +26,18 @@ const schema = Yup.object().shape({
 });
 
 type RegisterFormType = {
+  isRegister: boolean;
+  error: ErrorType;
+  registration: (data: UserRegisterType) => void;
   goToLogin: () => void;
 };
 
-export const RegisterForm = ({ goToLogin }: RegisterFormType) => {
-  const dispatch = useDispatch();
-  const error = useSelector(errorSelectors());
-  const isRegister = useSelector(isRegisterSelectors());
+export const RegisterForm = ({
+  isRegister,
+  error,
+  registration,
+  goToLogin,
+}: RegisterFormType) => {
   const {
     register,
     handleSubmit,
@@ -44,17 +47,12 @@ export const RegisterForm = ({ goToLogin }: RegisterFormType) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any): void => {
-    dispatch(registerActionThunk(data));
+  const onSubmit = (data: any) => {
+    registration(data);
   };
 
-  useEffect(() => {
-    dispatch(setIsRegister(false));
-  }, []);
-
   return (
-    <div className="wrap__form">
-      <h1>Регистрация</h1>
+    <WrapperForm formHeader="Регистрация">
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         {!isRegister ? (
           <>
@@ -88,6 +86,6 @@ export const RegisterForm = ({ goToLogin }: RegisterFormType) => {
           <Confirm login={goToLogin} />
         )}
       </form>
-    </div>
+    </WrapperForm>
   );
 };

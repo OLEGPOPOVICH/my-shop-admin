@@ -1,11 +1,6 @@
-export { Auth } from "./Auth";
-export { AuthActionType, setIsAuth } from "./actions";
-export {
-  registerActionThunk,
-  loginActionThunk,
-  logoutActionThunk,
-  checkAuthActionThunk,
-} from "./actionsThunk";
-export { authUserSelectors, isAuthSelectors } from "./selectors";
+export { actions as authActions, AuthActionType } from "./actions";
+export { selectors as authSelectors } from "./selectors";
 export { authReducer } from "./ducks";
 export { UserRegisterType, UserLoginType, AuthUserType } from "./types";
+export { LoginForm } from "./components/LoginForm";
+export { RegisterForm } from "./components/RegisterForm";

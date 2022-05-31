@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, FieldMessage, Input } from "@src/components/UI";
-import { loginActionThunk } from "../actionsThunk";
-import { errorSelectors } from "../selectors";
+import { Button, FieldMessage, Input } from "@common/components/UI";
+import { WrapperForm } from "../WrapperForm";
+import { ErrorType, UserLoginType } from "../../types";
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -23,12 +22,12 @@ const schema = Yup.object().shape({
 });
 
 type LoginFormType = {
+  error: ErrorType;
+  login: (data: UserLoginType) => void;
   goToRegister: () => void;
 };
 
-export const LoginForm = ({ goToRegister }: LoginFormType) => {
-  const dispatch = useDispatch();
-  const error = useSelector(errorSelectors());
+export const LoginForm = ({ error, login, goToRegister }: LoginFormType) => {
   const {
     register,
     handleSubmit,
@@ -39,12 +38,11 @@ export const LoginForm = ({ goToRegister }: LoginFormType) => {
   });
 
   const onSubmit = (data: any) => {
-    dispatch(loginActionThunk(data));
+    login(data);
   };
 
   return (
-    <div className="wrap__form">
-      <h1>Войти в аккаунт</h1>
+    <WrapperForm formHeader="Войти в аккаунт">
       <small>Пожалуйста войдите в свой аккаунт</small>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <Input
@@ -67,6 +65,6 @@ export const LoginForm = ({ goToRegister }: LoginFormType) => {
           <small onClick={goToRegister}>Зарегистрироваться</small>
         </div>
       </form>
-    </div>
+    </WrapperForm>
   );
 };

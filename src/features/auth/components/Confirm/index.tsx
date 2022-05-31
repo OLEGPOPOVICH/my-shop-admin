@@ -1,5 +1,5 @@
 import React from "react";
-import { Info } from "@components/UI";
+import { Info } from "@common/components/UI";
 
 type ConfirmType = {
   login: () => void;

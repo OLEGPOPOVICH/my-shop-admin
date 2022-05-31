@@ -3,11 +3,7 @@ export type UserRegisterType = {
   fullName: string;
   password: string;
 };
-
 export type UserLoginType = Omit<UserRegisterType, "fullName">;
-
-export type ErrorType = null | string;
-
 export type AuthUserType = {
   id: string;
   email: string;
@@ -15,3 +11,8 @@ export type AuthUserType = {
   isActivated: boolean;
   avatar: string;
 };
+export type AuthType = {
+  isAuth: boolean;
+  user: AuthUserType | null;
+};
+export type ErrorType = null | string;

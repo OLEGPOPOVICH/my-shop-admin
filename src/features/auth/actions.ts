@@ -1,13 +1,8 @@
-import { ErrorType, AuthUserType } from "./types";
+import { AuthType, ErrorType } from "./types";
 
 export const SET_IS_AUTH = "SET_IS_AUTH";
 export const SET_IS_REGISTER = "SET_IS_REGISTER";
-export const SET_ERROR = "SET_ERROR";
-
-type AuthType = {
-  isAuth: boolean;
-  user: AuthUserType | null;
-};
+export const SET_AUTH_ERROR = "SET_AUTH_ERROR";
 
 type SetIsAuthActionType = {
   type: typeof SET_IS_AUTH;
@@ -19,27 +14,33 @@ type SetIsRegisterActionType = {
   payload: boolean;
 };
 
-type SetErrorActionType = {
-  type: typeof SET_ERROR;
+type SetAuthErrorActionType = {
+  type: typeof SET_AUTH_ERROR;
   payload: ErrorType;
 };
 
 export type AuthActionType =
   | SetIsAuthActionType
   | SetIsRegisterActionType
-  | SetErrorActionType;
+  | SetAuthErrorActionType;
 
-export const setIsAuth = (payload: AuthType): SetIsAuthActionType => ({
+const setIsAuth = (payload: AuthType): SetIsAuthActionType => ({
   type: SET_IS_AUTH,
   payload,
 });
 
-export const setIsRegister = (payload: boolean): SetIsRegisterActionType => ({
+const setIsRegister = (payload: boolean): SetIsRegisterActionType => ({
   type: SET_IS_REGISTER,
   payload,
 });
 
-export const setError = (payload: ErrorType): SetErrorActionType => ({
-  type: SET_ERROR,
+const setError = (payload: ErrorType): SetAuthErrorActionType => ({
+  type: SET_AUTH_ERROR,
   payload,
 });
+
+export const actions = {
+  setIsAuth,
+  setIsRegister,
+  setError,
+};

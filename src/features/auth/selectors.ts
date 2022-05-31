@@ -1,23 +1,29 @@
-import { RootReducerType } from "@src/store";
-import { ErrorType } from "../products/types";
-import { AuthUserType } from "./types";
+import { RootReducerType } from "@store";
+import { AuthUserType, ErrorType } from "./types";
 
-export const isAuthSelectors =
+const getIsAuth =
   () =>
   (state: RootReducerType): boolean =>
     state.authReducer.isAuth;
 
-export const authUserSelectors =
+const getUser =
   () =>
   (state: RootReducerType): AuthUserType | null =>
     state.authReducer.user;
 
-export const isRegisterSelectors =
+const getIsRegister =
   () =>
   (state: RootReducerType): boolean =>
     state.authReducer.isRegister;
 
-export const errorSelectors =
+const getError =
   () =>
   (state: RootReducerType): ErrorType =>
-    state.authReducer.error;
+    state.authReducer.authError;
+
+export const selectors = {
+  getIsAuth,
+  getUser,
+  getIsRegister,
+  getError,
+};
