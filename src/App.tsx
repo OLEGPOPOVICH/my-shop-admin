@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "./components/UI";
-import { Header } from "@src/components/Header";
-import { Sidebar } from "@src/components/Sidebar";
-import { AppRoutes } from "./AppRoutes";
+import { AppRoutes } from "./routes/AppRoutes";
+import { Button } from "@common/components/UI";
+import { Header } from "@common/components/Header";
+import { Sidebar } from "@common/components/Sidebar";
+
+import { authSelectors } from "@features/auth";
+import { authProcesses } from "@processes/auth";
 import {
-  checkAuthActionThunk,
-  logoutActionThunk,
-  authUserSelectors,
-  isAuthSelectors,
-} from "./features/auth";
-import { loadersSelectors, LoaderWrap } from "./features/loaders";
-import {
-  useSocketIOClientActions,
-  useSocketIOClientState,
-} from "./SocketIOClientProvider";
+  globalErrorSelectors,
+  GlobalErrorLayout,
+  GlobalModalError,
+} from "@features/globalError";
+import { loadersSelectors, Loader } from "@features/loaders";
+import { useChatState, useChatActions } from "@common/context/chat";
 
 if (process.env.NODE_ENV === "development") {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -24,14 +23,18 @@ if (process.env.NODE_ENV === "development") {
 
 export const App = () => {
   const dispatch = useDispatch();
-  const loaders = useSelector(loadersSelectors());
-  const isAuth = useSelector(isAuthSelectors());
-  const authUser = useSelector(authUserSelectors());
-  const { socket } = useSocketIOClientState();
-  const socketActions = useSocketIOClientActions();
+  const loaders = useSelector(loadersSelectors.getLoaders());
+  const isAuth = useSelector(authSelectors.getIsAuth());
+  const isGlobalError = useSelector(globalErrorSelectors.getIsGlobalError());
+  const isGlobalModalErrors = useSelector(
+    globalErrorSelectors.getIsGlobalModalErrors()
+  );
+  const authUser = useSelector(authSelectors.getUser());
+  const { socket } = useChatState();
+  const socketActions = useChatActions();
 
   useEffect(() => {
-    dispatch(checkAuthActionThunk());
+    dispatch(authProcesses.checkAuth());
   }, []);
 
   const handleLogout = () => {
@@ -39,14 +42,14 @@ export const App = () => {
       socketActions.emit.disconnectUser(authUser.id);
     }
 
-    dispatch(logoutActionThunk());
+    dispatch(authProcesses.logout());
   };
 
   return (
     <>
       <Sidebar />
       <div className="body">
-        <LoaderWrap loader={loaders.checkAuth}>
+        <Loader loader={loaders.checkAuth}>
           <Header>
             <div></div>
             {isAuth ? (
@@ -57,14 +60,15 @@ export const App = () => {
           </Header>
           <div className="wrapper-page container">
             <div className="page">
-              <AppRoutes />
+              {isGlobalError ? <GlobalErrorLayout /> : <AppRoutes />}
             </div>
           </div>
           <footer className="footer">
             <div className="container">Footer</div>
           </footer>
-        </LoaderWrap>
+        </Loader>
       </div>
+      {isGlobalModalErrors ? <GlobalModalError /> : null}
     </>
   );
 };

@@ -5,22 +5,17 @@ import {
   Pagination,
   FormControlLabel,
   Checkbox,
-} from "@src/components/UI";
-import { Grid } from "@src/components/Styles";
+} from "@common/components/UI";
+import { Grid } from "@common/components/Styles";
 import {
   Product,
-  productsDataSelectors,
-  productsErrorSelectors,
-  settingsFieldsSelectors,
+  productsActions,
+  productsSelectors,
   SettingsFieldType,
-  getProductsThunkCreator,
-  getSettingsFieldsThunkCreator,
-  settingsFieldsErrorSelectors,
   ProductType,
-  setProducts,
-  setSettingsFields,
-} from "@src/features/products";
-import { LoaderWrap, loadersSelectors } from "@src/features/loaders";
+} from "@features/products";
+import { productsProcesses } from "@processes/products";
+import { Loader, loadersSelectors } from "@features/loaders";
 
 type ProductsViewGridType = {
   isSettingsViewProduct: boolean;
@@ -46,11 +41,9 @@ export const ProductsViewGrid = ({
   const [currentPage, setPage] = useState(1);
 
   const [selectedFields, setSelectedFields] = useState<SettingsFieldsType>({});
-  const loaders = useSelector(loadersSelectors());
-  const productsData = useSelector(productsDataSelectors());
-  const productsError = useSelector(productsErrorSelectors());
-  const settingsFields = useSelector(settingsFieldsSelectors());
-  const settingsFieldsError = useSelector(settingsFieldsErrorSelectors());
+  const loaders = useSelector(loadersSelectors.getLoaders());
+  const productsData = useSelector(productsSelectors.getProductsData());
+  const settingsFields = useSelector(productsSelectors.getSettingsFields());
 
   const countDataPerPage = 14;
   const countPage = Math.ceil(productsData.total / countDataPerPage);
@@ -80,11 +73,11 @@ export const ProductsViewGrid = ({
 
   useEffect(() => {
     if (!Object.keys(selectedFields).length) {
-      dispatch(getSettingsFieldsThunkCreator());
+      dispatch(productsProcesses.getSettingsFields());
     }
 
     dispatch(
-      getProductsThunkCreator({
+      productsProcesses.getProducts({
         currentPage,
         countDataPerPage,
       })
@@ -94,12 +87,12 @@ export const ProductsViewGrid = ({
   useEffect(
     () => () => {
       dispatch(
-        setProducts({
+        productsActions.setProducts({
           products: [],
           total: 0,
         })
       );
-      dispatch(setSettingsFields([]));
+      dispatch(productsActions.setSettingsFields([]));
     },
     []
   );
@@ -115,11 +108,7 @@ export const ProductsViewGrid = ({
             backgroundColor: "white",
           }}
         >
-          <LoaderWrap
-            height="50"
-            loader={loaders.settingsFields}
-            error={settingsFieldsError}
-          >
+          <Loader height={50} loader={loaders.settingsFields}>
             {settingsFields.map((settingField) => (
               <FormControlLabel
                 key={settingField.name}
@@ -133,15 +122,11 @@ export const ProductsViewGrid = ({
                 }
               />
             ))}
-          </LoaderWrap>
+          </Loader>
         </Box>
       ) : null}
 
-      <LoaderWrap
-        height="100"
-        loader={loaders.products || loaders.settingsFields}
-        error={productsError}
-      >
+      <Loader height={100} loader={loaders.products || loaders.settingsFields}>
         <Grid
           data={productsData.products.map((product) => (
             <Product
@@ -170,7 +155,7 @@ export const ProductsViewGrid = ({
             onChange={handlePaginationChange}
           />
         </Box>
-      </LoaderWrap>
+      </Loader>
     </>
   );
 };

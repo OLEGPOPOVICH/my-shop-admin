@@ -1,3 +1,5 @@
 import React from "react";
 
-export const UsersPage = (): JSX.Element => <div>Page Users</div>;
+const UsersPage = (): JSX.Element => <div>Page Users</div>;
+
+export default UsersPage;

@@ -1,3 +1,5 @@
 import React from "react";
 
-export const OrdersPage = (): JSX.Element => <div>Page Orders</div>;
+const OrdersPage = (): JSX.Element => <div>Page Orders</div>;
+
+export default OrdersPage;

@@ -1,16 +1,16 @@
 import {
   AuthActionType,
-  SET_ERROR,
+  SET_AUTH_ERROR,
   SET_IS_AUTH,
   SET_IS_REGISTER,
 } from "./actions";
-import { ErrorType, AuthUserType } from "./types";
+import { AuthUserType, ErrorType } from "./types";
 
 const initialState = {
   isAuth: false,
   isRegister: false,
   user: null as AuthUserType | null,
-  error: null as ErrorType,
+  authError: null as ErrorType,
 };
 
 type InitialStateType = typeof initialState;
@@ -24,18 +24,18 @@ export const authReducer = (
       return {
         ...state,
         ...action.payload,
-        error: null,
+        authError: null,
       };
     case SET_IS_REGISTER:
       return {
         ...state,
         isRegister: action.payload,
-        error: null,
+        authError: null,
       };
-    case SET_ERROR:
+    case SET_AUTH_ERROR:
       return {
         ...state,
-        error: action.payload,
+        authError: action.payload,
       };
     default:
       return state;

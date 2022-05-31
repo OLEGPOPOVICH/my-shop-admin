@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { DB } from "@src/database";
+import { DB } from "@database";
 import {
   SERVER_URL,
   PRODUCTS_URL,

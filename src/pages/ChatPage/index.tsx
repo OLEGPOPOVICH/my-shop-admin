@@ -1,33 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authUserSelectors } from "@src/features/auth";
-import { loadersSelectors } from "@src/features/loaders";
-import {
-  Chat,
-  connectedUserIdsSelectors,
-  getConnectedUserIdsThunkCreator,
-  setConnectedUserIds,
-} from "@src/features/chat";
+import { authSelectors } from "@features/auth";
+import { Chat, chatSelectors, chatActions } from "@features/chat";
+import { chatProcesses } from "@processes/chat";
 import { ChatSidebarContainer } from "./ChatSidebarContainer";
 import { ChatContentContainer } from "./ChatContentContainer";
-import {
-  useSocketIOClientActions,
-  useSocketIOClientState,
-} from "@src/SocketIOClientProvider";
+import { useChatState, useChatActions } from "@common/context/chat";
 
-export const ChatPage = (): JSX.Element => {
+const ChatPage = (): JSX.Element => {
   const dispatch = useDispatch();
-  const authUser = useSelector(authUserSelectors());
-  const loaders = useSelector(loadersSelectors());
-  const { socket } = useSocketIOClientState();
-  const socketActions = useSocketIOClientActions();
-  const connectedUserIds = useSelector(connectedUserIdsSelectors());
+  const authUser = useSelector(authSelectors.getUser());
+  const connectedUserIds = useSelector(chatSelectors.getConnectedUserIds());
+  const { socket } = useChatState();
+  const socketActions = useChatActions();
 
   useEffect(() => {
-    dispatch(getConnectedUserIdsThunkCreator());
+    dispatch(chatProcesses.getConnectedUserIds());
 
     return () => {
-      dispatch(setConnectedUserIds([]));
+      dispatch(chatActions.setConnectedUserIds([]));
     };
   }, []);
 
@@ -41,26 +32,26 @@ export const ChatPage = (): JSX.Element => {
     };
   }, [socket]);
 
-  if (!authUser?.id) {
-    return <></>;
-  }
-
   return (
-    <Chat>
-      <ChatSidebarContainer
-        socket={socket}
-        socketActions={socketActions}
-        authUser={authUser}
-        connectedUserIds={connectedUserIds}
-        loaders={loaders}
-      />
-      <ChatContentContainer
-        socket={socket}
-        socketActions={socketActions}
-        authUser={authUser}
-        connectedUserIds={connectedUserIds}
-        loaders={loaders}
-      />
-    </Chat>
+    <>
+      {authUser ? (
+        <Chat>
+          <ChatSidebarContainer
+            socket={socket}
+            socketActions={socketActions}
+            authUser={authUser}
+            connectedUserIds={connectedUserIds}
+          />
+          <ChatContentContainer
+            socket={socket}
+            socketActions={socketActions}
+            authUser={authUser}
+            connectedUserIds={connectedUserIds}
+          />
+        </Chat>
+      ) : null}
+    </>
   );
 };
+
+export default ChatPage;

@@ -3,19 +3,13 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import { Button, IconButton, ModalConfirm } from "@src/components/UI";
-import {
-  setProductsForEdit,
-  deleteProductThunkCreator,
-  getProductsByIdsThunkCreator,
-  saveProductsThunkCreator,
-  ProductType,
-  ViewType,
-} from "@src/features/products";
+import { Button, IconButton, ModalConfirm } from "@common/components/UI";
+import { productsActions, ProductType, ViewType } from "@features/products";
+import { productsProcesses } from "@processes/products";
 import { ProductsViewGrid } from "./ProductsViewGrid";
 import { ProductsEdit } from "./ProductsEdit";
 
-export const ProductsPage = (): JSX.Element => {
+const ProductsPage = (): JSX.Element => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [viewType, setViewType] = useState<ViewType>(ViewType.grid);
@@ -27,7 +21,7 @@ export const ProductsPage = (): JSX.Element => {
 
   const handleDeleteProduct = (isConfirm: boolean) => {
     if (isConfirm) {
-      dispatch(deleteProductThunkCreator({ ids: `${productIds}` }));
+      dispatch(productsProcesses.deleteProducts({ ids: `${productIds}` }));
     }
 
     setIsModalConfirm(false);
@@ -48,29 +42,25 @@ export const ProductsPage = (): JSX.Element => {
 
   const handleEditProduct = () => {
     if (productIds.length) {
-      dispatch(getProductsByIdsThunkCreator({ ids: `${productIds}` }));
+      dispatch(productsProcesses.getProductsByIds({ ids: `${productIds}` }));
     }
 
     setIsEdit(true);
   };
 
   const handleSaveProducts = (products: ProductType[]) => {
-    dispatch(saveProductsThunkCreator(products, { ids: `${productIds}` }));
+    dispatch(
+      productsProcesses.saveProducts(products, { ids: `${productIds}` })
+    );
     setIsEdit(false);
     setProductIds([]);
-    dispatch(
-      setProductsForEdit({
-        products: [],
-        total: 0,
-      })
-    );
   };
 
   const handleCancelPodalEditProducts = () => {
     setIsEdit(false);
     setProductIds([]);
     dispatch(
-      setProductsForEdit({
+      productsActions.setProductsForEdit({
         products: [],
         total: 0,
       })
@@ -165,3 +155,5 @@ const ViewActions = styled.div`
     margin-left: 15px;
   }
 `;
+
+export default ProductsPage;

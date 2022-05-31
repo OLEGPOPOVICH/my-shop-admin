@@ -31,5 +31,3 @@ export type MessageType = {
   dialogId: string;
   partnerId: string;
 };
-
-export type ErrorType = null | string;

@@ -38,5 +38,3 @@ export type SettingsFieldType = {
   name: string;
   checked: boolean;
 };
-
-export type ErrorType = null | string;

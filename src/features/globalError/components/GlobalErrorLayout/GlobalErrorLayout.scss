@@ -1,0 +1,19 @@
+.error__layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 2px 6px 17px 0px rgba(0, 0, 0, 0.18);
+
+  & .error__icon {
+    margin-bottom: 10px;
+  }
+
+  & > p {
+    margin-bottom: 16px;
+  }
+}

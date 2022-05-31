@@ -1,34 +1,34 @@
 import { RootReducerType } from "@store";
 
-export const dialogsSelectors = () => (state: RootReducerType) =>
-  state.chatReducer.dialogs;
+const getDialogs = () => (state: RootReducerType) => state.chatReducer.dialogs;
 
-export const errorDialogsSelectors = () => (state: RootReducerType) =>
-  state.chatReducer.errors.dialogs;
-
-export const currentDialogSelector = () => (state: RootReducerType) =>
+const getCurrentDialog = () => (state: RootReducerType) =>
   state.chatReducer.currentDialog;
 
-export const newDialogSelector = () => (state: RootReducerType) =>
+const getNewDialog = () => (state: RootReducerType) =>
   state.chatReducer.newDialog;
 
-export const currentDialogIdSelector = () => (state: RootReducerType) =>
+const getCurrentDialogId = () => (state: RootReducerType) =>
   state.chatReducer.currentDialog?.id;
 
-export const connectedUserIdsSelectors = () => (state: RootReducerType) =>
+const getConnectedUserIds = () => (state: RootReducerType) =>
   state.chatReducer.connectedUserIds;
 
-export const usersSelectors = () => (state: RootReducerType) =>
-  state.chatReducer.users;
+const getUsers = () => (state: RootReducerType) => state.chatReducer.users;
 
-export const dialogUsersSelectors = () => (state: RootReducerType) =>
+const getDialogUsers = () => (state: RootReducerType) =>
   state.chatReducer.dialogUsers;
 
-export const errorUsersSelectors = () => (state: RootReducerType) =>
-  state.chatReducer.errors.users;
-
-export const dialogMessagesSelector = () => (state: RootReducerType) =>
+const getDialogMessages = () => (state: RootReducerType) =>
   state.chatReducer.dialogMessages;
 
-export const errorMessagesSelector = () => (state: RootReducerType) =>
-  state.chatReducer.errors.messages;
+export const selectors = {
+  getDialogs,
+  getCurrentDialog,
+  getNewDialog,
+  getCurrentDialogId,
+  getConnectedUserIds,
+  getUsers,
+  getDialogUsers,
+  getDialogMessages,
+};

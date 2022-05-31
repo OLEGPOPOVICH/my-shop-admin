@@ -118,8 +118,10 @@ module.exports = {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.png', ".css", ".scss"],
     alias: {
       '@src': path.resolve(__dirname, 'src'),
+      "@common": path.resolve(__dirname, 'src/common'),
       "@components": path.resolve(__dirname, 'src/components'),
       "@features": path.resolve(__dirname, 'src/features'),
+      "@processes": path.resolve(__dirname, 'src/processes'),
       "@pages": path.resolve(__dirname, 'src/pages'),
       "@services": path.resolve(__dirname, 'src/services'),
       "@store": path.resolve(__dirname, 'src/store'),

@@ -1,10 +1,5 @@
-export const TOGGLE_GLOBAL_LOADER = "TOGGLE_GLOBAL_LOADER";
 export const SET_LOADER = "SET_PAGE_LOADER";
 export const REMOVE_LOADER = "REMOVE_PAGE_LOADER";
-
-type ToggleGlobalLoaderActionType = {
-  type: typeof TOGGLE_GLOBAL_LOADER;
-};
 
 type SetLoaderActionType = {
   type: typeof SET_LOADER;
@@ -16,21 +11,19 @@ type RemoveLoaderActionType = {
   payload: string;
 };
 
-export type LoaderActionType =
-  | ToggleGlobalLoaderActionType
-  | SetLoaderActionType
-  | RemoveLoaderActionType;
+export type LoaderActionType = SetLoaderActionType | RemoveLoaderActionType;
 
-export const toggleGlobalLoader = (): ToggleGlobalLoaderActionType => ({
-  type: TOGGLE_GLOBAL_LOADER,
-});
-
-export const setLoader = (payload: string): SetLoaderActionType => ({
+const setLoader = (payload: string): SetLoaderActionType => ({
   type: SET_LOADER,
   payload,
 });
 
-export const removeLoader = (payload: string): RemoveLoaderActionType => ({
+const removeLoader = (payload: string): RemoveLoaderActionType => ({
   type: REMOVE_LOADER,
   payload,
 });
+
+export const actions = {
+  setLoader,
+  removeLoader,
+};

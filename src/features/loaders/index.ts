@@ -1,10 +1,4 @@
-export {
-  removeLoader,
-  setLoader,
-  toggleGlobalLoader,
-  LoaderActionType,
-} from "./actions";
+export { actions as loadersActions, LoaderActionType } from "./actions";
 export { loaderReducer } from "./ducks";
-export { Loader } from "./Loader";
-export { LoaderWrap } from "./LoaderWrap";
-export { loadersSelectors } from "./selectors";
+export { Loader } from "./components/Loader";
+export { selectors as loadersSelectors } from "./selectors";

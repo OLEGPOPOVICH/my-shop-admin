@@ -1,7 +1,7 @@
-import { api } from "@src/http";
 import { AxiosResponse } from "axios";
+import { api } from "@common/http";
+import { DialogType, UserType, MessageType } from "@features/chat";
 import { ParamsType, ResponseType } from "./";
-import { DialogType, UserType, MessageType } from "@src/features/chat";
 
 export class ChatService {
   static getUserDialogs(
