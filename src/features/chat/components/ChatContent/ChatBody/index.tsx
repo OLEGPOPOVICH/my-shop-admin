@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { LoaderWrap } from "@src/features/loaders";
-import { MessageType } from "../../types";
+import { MessageType } from "../../../types";
 import { ChatMessages } from "./ChatMessages";
 
 import "./ChatBody";
@@ -9,8 +8,6 @@ type ChatBodyType = {
   currentUserId: string;
   dialogMessages: MessageType[];
   connectedUserIds: string[];
-  errorMessages: string | null;
-  loaderMessages?: boolean;
   setMessagesRead: (dialogId: string, nreadMessages: MessageType[]) => void;
 };
 
@@ -18,7 +15,6 @@ export const ChatBody = ({
   currentUserId,
   dialogMessages,
   connectedUserIds,
-  errorMessages,
   setMessagesRead,
 }: ChatBodyType) => {
   useEffect(() => {
@@ -37,13 +33,11 @@ export const ChatBody = ({
 
   return (
     <div className="chat__body">
-      <LoaderWrap loader={false} error={errorMessages}>
-        <ChatMessages
-          messages={dialogMessages}
-          currentUserId={currentUserId}
-          connectedUserIds={connectedUserIds}
-        />
-      </LoaderWrap>
+      <ChatMessages
+        messages={dialogMessages}
+        currentUserId={currentUserId}
+        connectedUserIds={connectedUserIds}
+      />
     </div>
   );
 };

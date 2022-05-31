@@ -1,6 +1,10 @@
 import React from "react";
-import { Badge, BadgeColorType, BadgePositionType } from "@src/components/UI";
-import { DialogType, UserType } from "../../types";
+import {
+  Badge,
+  BadgeColorType,
+  BadgePositionType,
+} from "@common/components/UI";
+import { DialogType, UserType } from "../../../types";
 import { ChatConnectionStatus } from "../ChatConnectionStatus";
 import "./ChatHeader";
 

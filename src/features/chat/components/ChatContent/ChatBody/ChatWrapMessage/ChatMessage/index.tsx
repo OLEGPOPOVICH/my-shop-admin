@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import { Typing } from "@components/UI";
-import { Themes } from "@src/components/types";
+import { Typing } from "@common/components/UI";
+import { Themes } from "@common/components/types";
 
 import "./ChatMessage";
 

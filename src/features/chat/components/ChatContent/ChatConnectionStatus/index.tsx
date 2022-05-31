@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from "react";
-import { DialogType, UserType } from "../../types";
+import { DialogType, UserType } from "../../../types";
 
 type ChatConnectionStatusType = {
   currentDialog: DialogType | Omit<DialogType, "lastMessage"> | null;

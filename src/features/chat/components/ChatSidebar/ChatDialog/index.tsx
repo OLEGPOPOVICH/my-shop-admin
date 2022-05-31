@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { formatDistanceToNow, isToday, format, ruLocale } from "@utils";
+import { formatDistanceToNow, isToday, format, ruLocale } from "@common/utils";
 import {
   Avatar,
   AvatarShapeType,
@@ -9,8 +9,8 @@ import {
   Blockinfo,
   BadgePositionType,
   Readed,
-} from "@src/components/UI";
-import { DialogType } from "../../types";
+} from "@common/components/UI";
+import { DialogType } from "../../../types";
 import "./ChatDialog";
 
 type ChatDialogType = {

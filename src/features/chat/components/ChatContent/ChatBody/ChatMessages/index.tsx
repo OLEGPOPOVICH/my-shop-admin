@@ -7,8 +7,8 @@ import {
   Badge,
   BadgeColorType,
   Blockinfo,
-} from "@src/components/UI";
-import { MessageType } from "../../../types";
+} from "@common/components/UI";
+import { MessageType } from "../../../../types";
 import { ChatWrapMessage } from "../ChatWrapMessage";
 import { ChatEmpty } from "../../ChatEmpty";
 import { ChatUnreadMessageInfo } from "../ChatUnreadMessageInfo";

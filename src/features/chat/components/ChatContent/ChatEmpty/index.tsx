@@ -1,6 +1,6 @@
 import React from "react";
 import srcSmptyChatSvg from "@src/assets/img/emptyChat.svg";
-import { Img } from "@src/components/UI";
+import { Img } from "@common/components/UI";
 import "./ChatEmpty";
 
 type ChatEmptyType = {

@@ -1,9 +1,9 @@
 import React from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import ruLocale from "date-fns/locale/ru";
-import { Readed } from "@components/UI";
-import { Themes } from "@components/types";
-import { MessageType } from "../../../types";
+import { Readed } from "@common/components/UI";
+import { Themes } from "@common/components/types";
+import { MessageType } from "../../../../types";
 import { ChatMessage } from "./ChatMessage";
 import { ChatAudio } from "./ChatAudio";
 import { ChatAttachments } from "./ChatAttachments";

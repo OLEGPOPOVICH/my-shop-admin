@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import "./ChatSearch";
-import { InputSearch } from "@src/components/UI";
+import { InputSearch } from "@common/components/UI";
 
 type ChatSearchType = {
   searchValue: string;

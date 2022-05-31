@@ -1,43 +1,7 @@
-export { Chat } from "./Chat";
-export { ChatSidebar } from "./ChatSidebar";
-export { ChatContent } from "./ChatContent";
+export { Chat } from "./components/Chat";
+export { ChatSidebar } from "./components/ChatSidebar";
+export { ChatContent } from "./components/ChatContent";
 export { chatReducer } from "./ducks";
-export {
-  dialogsSelectors,
-  usersSelectors,
-  currentDialogSelector,
-  currentDialogIdSelector,
-  newDialogSelector,
-  dialogUsersSelectors,
-  dialogMessagesSelector,
-  connectedUserIdsSelectors,
-  errorDialogsSelectors,
-  errorUsersSelectors,
-  errorMessagesSelector,
-} from "./selectors";
-export {
-  setDialogs,
-  updateDialog,
-  addDialog,
-  setErrorDialogs,
-  setCurrentDialog,
-  setUsers,
-  setDialogUsers,
-  setErrorUsers,
-  setMessages,
-  setConnectedUserIds,
-  setMessage,
-  setNewDialog,
-  setErrorMessages,
-  makeMessagesRead,
-  ChatActionsType,
-} from "./actions";
-export {
-  getUserDialogsThunkCreator,
-  getUsersThunkCreator,
-  getDialogMessagesThunkCreator,
-  getDialogUsersThunkCreator,
-  getConnectedUserIdsThunkCreator,
-  setMessagesReadThunkCreator,
-} from "./actionsThunk";
+export { selectors as chatSelectors } from "./selectors";
+export { actions as chatActions, ChatActionsType } from "./actions";
 export { UserType, DialogType, MessageType } from "./types";

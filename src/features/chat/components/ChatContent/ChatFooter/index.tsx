@@ -3,10 +3,10 @@ import React, { ChangeEvent, useState } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker, EmojiData } from "emoji-mart";
 import Upload from "rc-upload";
-import { IconButton, Textarea } from "@src/components/UI";
+import { IconButton, Textarea } from "@common/components/UI";
 
 import "./ChatFooter";
-import { MessageType } from "../../types";
+import { MessageType } from "../../../types";
 
 type ChatFooterType = {
   sendMessage: (

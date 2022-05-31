@@ -1,6 +1,6 @@
 import React from "react";
-import { Avatar, AvatarShapeType, Blockinfo } from "@src/components/UI";
-import { UserType } from "../types";
+import { Avatar, AvatarShapeType, Blockinfo } from "@common/components/UI";
+import { UserType } from "../../types";
 
 import "./ChatUser";
 

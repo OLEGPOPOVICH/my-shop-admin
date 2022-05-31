@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import { AudioPlayer } from "@src/components/UI";
-import { Themes } from "@src/components/types";
+import { AudioPlayer } from "@common/components/UI";
+import { Themes } from "@common/components/types";
 import "./ChatAudio";
 
 export type AudioType = string | null;

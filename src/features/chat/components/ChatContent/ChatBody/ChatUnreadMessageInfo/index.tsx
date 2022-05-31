@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { MessageType } from "@src/features/chat";
+import { MessageType } from "@features/chat";
 
 import "./ChatUnreadMessageInfo";
 

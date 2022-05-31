@@ -1,5 +1,5 @@
 import React from "react";
-import { DialogType, MessageType, UserType } from "../types";
+import { DialogType, MessageType, UserType } from "../../types";
 
 import { ChatHeader } from "./ChatHeader";
 import { ChatBody } from "./ChatBody";
@@ -15,8 +15,6 @@ type ChatContentType = {
   newDialog: Omit<DialogType, "lastMessage"> | null;
   dialogUsers: UserType[];
   dialogMessages: MessageType[];
-  errorMessages: string | null;
-  loaderMessages?: boolean;
   setMessagesRead: (dialogId: string, unreadMessages: MessageType[]) => void;
   sendMessage: (
     message: Pick<MessageType, "id" | "dataCreation" | "message">
@@ -30,8 +28,6 @@ export const ChatContent = ({
   newDialog,
   dialogUsers,
   dialogMessages,
-  errorMessages,
-  loaderMessages,
   setMessagesRead,
   sendMessage,
 }: ChatContentType) => (
@@ -47,8 +43,6 @@ export const ChatContent = ({
           currentUserId={currentUserId}
           dialogMessages={dialogMessages}
           connectedUserIds={connectedUserIds}
-          errorMessages={errorMessages}
-          loaderMessages={loaderMessages}
           setMessagesRead={setMessagesRead}
         />
         <ChatFooter sendMessage={sendMessage} />
