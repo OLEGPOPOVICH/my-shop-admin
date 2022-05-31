@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  ProductControl,
-  ProductType,
-  addProductThunkCreator,
-} from "@src/features/products";
-import { Button } from "@src/components/UI";
+import { ProductControl, ProductType } from "@features/products";
+import { productsProcesses } from "@processes/products";
+import { Button } from "@common/components/UI";
 
-export const ProductAddPage = (): JSX.Element => {
+const ProductAddPage = (): JSX.Element => {
   const dispatch = useDispatch();
   const [product, setProduct] = useState<ProductType>({} as ProductType);
 
@@ -16,7 +13,7 @@ export const ProductAddPage = (): JSX.Element => {
   };
 
   const handleAddProduct = () => {
-    dispatch(addProductThunkCreator(product));
+    dispatch(productsProcesses.addProduct(product));
     setProduct({} as ProductType);
   };
 
@@ -36,3 +33,5 @@ export const ProductAddPage = (): JSX.Element => {
     </>
   );
 };
+
+export default ProductAddPage;

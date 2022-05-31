@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { Button, Modal } from "@src/components/UI";
+import { Button, Modal } from "@common/components/UI";
 import {
   ProductControl,
+  productsSelectors,
   ProductType,
-  productsDataForEditSelectors,
-} from "@src/features/products";
+} from "@features/products";
 
 type ProductsEditType = {
   isEdit: boolean;
@@ -19,7 +19,7 @@ export const ProductsEdit = ({
   onSave,
   onCancel,
 }: ProductsEditType) => {
-  const productsData = useSelector(productsDataForEditSelectors());
+  const productsData = useSelector(productsSelectors.getProductsDataForEdit());
   const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {

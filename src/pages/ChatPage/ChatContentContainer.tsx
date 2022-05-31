@@ -1,31 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthUserType } from "@src/features/auth";
+import { AuthUserType } from "@features/auth";
 import {
   ChatContent,
-  getDialogMessagesThunkCreator,
-  getDialogUsersThunkCreator,
-  setMessagesReadThunkCreator,
-  setNewDialog,
-  setMessage,
-  updateDialog,
-  currentDialogSelector,
-  newDialogSelector,
-  errorMessagesSelector,
-  dialogUsersSelectors,
-  dialogMessagesSelector,
   MessageType,
-  setMessages,
-  setDialogUsers,
-} from "@src/features/chat";
-import { SocketIOClietnActions } from "@src/SocketIOClientProvider";
+  chatActions,
+  chatSelectors,
+} from "@features/chat";
+import { chatProcesses } from "@processes/chat";
+import { ChatActionsType } from "@common/context/chat";
 
 type ChatContentContainerType = {
   socket: any;
-  socketActions: SocketIOClietnActions;
+  socketActions: ChatActionsType;
   authUser: AuthUserType;
   connectedUserIds: string[];
-  loaders: { [key: string]: boolean };
 };
 
 export const ChatContentContainer = ({
@@ -33,21 +23,19 @@ export const ChatContentContainer = ({
   socketActions,
   authUser,
   connectedUserIds,
-  loaders,
 }: ChatContentContainerType) => {
   const dispatch = useDispatch();
-  const currentDialog = useSelector(currentDialogSelector());
-  const newDialog = useSelector(newDialogSelector());
-  const dialogUsers = useSelector(dialogUsersSelectors());
-  const dialogMessages = useSelector(dialogMessagesSelector());
-  const errorMessages = useSelector(errorMessagesSelector());
+  const currentDialog = useSelector(chatSelectors.getCurrentDialog());
+  const newDialog = useSelector(chatSelectors.getNewDialog());
+  const dialogUsers = useSelector(chatSelectors.getDialogUsers());
+  const dialogMessages = useSelector(chatSelectors.getDialogMessages());
 
   useEffect(() => {
     if (currentDialog && socket && authUser?.id) {
       socketActions.emit.joinDialog(authUser.id, currentDialog.id);
-      dispatch(setNewDialog(null));
-      dispatch(getDialogUsersThunkCreator(currentDialog.id));
-      dispatch(getDialogMessagesThunkCreator(currentDialog.id));
+      dispatch(chatActions.setNewDialog(null));
+      dispatch(chatProcesses.getDialogUsers(currentDialog.id));
+      dispatch(chatProcesses.getDialogMessages(currentDialog.id));
     }
 
     return () => {
@@ -68,8 +56,8 @@ export const ChatContentContainer = ({
       socketActions.unsubscribe.setMessage();
       socketActions.unsubscribe.updateDialogUsers();
       socketActions.unsubscribe.makeMessagesRead();
-      dispatch(setMessages([]));
-      dispatch(setDialogUsers([]));
+      dispatch(chatActions.setMessages([]));
+      dispatch(chatActions.setDialogUsers([]));
     };
   }, [socket]);
 
@@ -77,7 +65,7 @@ export const ChatContentContainer = ({
     dialogId: string,
     unreadMessages: MessageType[]
   ) => {
-    dispatch(setMessagesReadThunkCreator(dialogId, unreadMessages));
+    dispatch(chatProcesses.setMessagesRead(dialogId, unreadMessages));
   };
 
   const handleSendMessage = (
@@ -99,8 +87,8 @@ export const ChatContentContainer = ({
         },
       };
 
-      dispatch(setMessage(dialog.lastMessage));
-      dispatch(updateDialog(dialog));
+      dispatch(chatActions.setMessage(dialog.lastMessage));
+      dispatch(chatActions.updateDialog(dialog));
       socketActions.emit.newMessage(dialog.lastMessage);
     }
 
@@ -117,8 +105,8 @@ export const ChatContentContainer = ({
         },
       };
 
-      dispatch(setNewDialog(null));
-      dispatch(setMessage(dialog.lastMessage));
+      dispatch(chatActions.setNewDialog(null));
+      dispatch(chatActions.setMessage(dialog.lastMessage));
       socketActions.emit.createDialog(dialog);
     }
   };
@@ -131,8 +119,6 @@ export const ChatContentContainer = ({
       newDialog={newDialog}
       dialogUsers={dialogUsers}
       dialogMessages={dialogMessages}
-      errorMessages={errorMessages}
-      loaderMessages={loaders.messages}
       setMessagesRead={handleSetMessagesRead}
       sendMessage={handleSendMessage}
     />

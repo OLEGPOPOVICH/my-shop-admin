@@ -1,32 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthUserType } from "@src/features/auth";
+import { AuthUserType } from "@features/auth";
 import {
   ChatSidebar,
-  getUserDialogsThunkCreator,
-  getUsersThunkCreator,
-  setCurrentDialog,
-  setDialogUsers,
-  setUsers,
-  setMessages,
-  setNewDialog,
-  dialogsSelectors,
-  usersSelectors,
-  currentDialogIdSelector,
-  errorDialogsSelectors,
-  errorUsersSelectors,
+  chatActions,
+  chatSelectors,
   DialogType,
   UserType,
-  setDialogs,
-} from "@src/features/chat";
-import { SocketIOClietnActions } from "@src/SocketIOClientProvider";
+} from "@features/chat";
+import { chatProcesses } from "@processes/chat";
+import { ChatActionsType } from "@common/context/chat";
 
 type ChatSidebarContainerType = {
   socket: any;
-  socketActions: SocketIOClietnActions;
+  socketActions: ChatActionsType;
   authUser: AuthUserType;
   connectedUserIds: string[];
-  loaders: { [key: string]: boolean };
 };
 
 export const ChatSidebarContainer = ({
@@ -34,21 +24,18 @@ export const ChatSidebarContainer = ({
   socketActions,
   authUser,
   connectedUserIds,
-  loaders,
 }: ChatSidebarContainerType): JSX.Element => {
   const dispatch = useDispatch();
   const [isCreateChat, setIsCreateChat] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const currentDialogId = useSelector(currentDialogIdSelector());
-  const dialogs = useSelector(dialogsSelectors());
-  const errorDialogs = useSelector(errorDialogsSelectors());
-  const users = useSelector(usersSelectors());
-  const errorUsers = useSelector(errorUsersSelectors());
+  const currentDialogId = useSelector(chatSelectors.getCurrentDialogId());
+  const dialogs = useSelector(chatSelectors.getDialogs());
+  const users = useSelector(chatSelectors.getUsers());
 
   useEffect(() => {
     if (!isCreateChat && authUser?.id) {
       dispatch(
-        getUserDialogsThunkCreator(authUser.id, {
+        chatProcesses.getUserDialogs(authUser.id, {
           query: searchValue,
         })
       );
@@ -64,17 +51,17 @@ export const ChatSidebarContainer = ({
     return () => {
       socketActions.unsubscribe.updateDialog();
       socketActions.unsubscribe.addDialog();
-      dispatch(setDialogs([]));
+      dispatch(chatActions.setDialogs([]));
     };
   }, [socket]);
 
   useEffect(() => {
     if (isCreateChat) {
-      dispatch(getUsersThunkCreator({ query: searchValue }));
+      dispatch(chatProcesses.getUsers({ query: searchValue }));
     }
 
     if (!isCreateChat && users.length) {
-      dispatch(setUsers([]));
+      dispatch(chatActions.setUsers([]));
     }
   }, [isCreateChat, searchValue]);
 
@@ -91,15 +78,15 @@ export const ChatSidebarContainer = ({
   };
 
   const handleSelectUser = (user: UserType) => {
-    dispatch(setDialogUsers([]));
+    dispatch(chatActions.setDialogUsers([]));
     setSearchValue("");
     setIsCreateChat(!isCreateChat);
-    dispatch(setMessages([]));
+    dispatch(chatActions.setMessages([]));
 
     const dialog = dialogs.find((dialog) => dialog.partnerId === user.id);
 
     if (dialog) {
-      dispatch(setCurrentDialog(dialog));
+      dispatch(chatActions.setCurrentDialog(dialog));
     } else {
       const newDialog = {
         id: `${Date.now()}`,
@@ -111,13 +98,15 @@ export const ChatSidebarContainer = ({
         totalUnreadMsg: 0,
       };
 
-      dispatch(setCurrentDialog(null));
-      dispatch(setNewDialog(newDialog as Omit<DialogType, "lastMessage">));
+      dispatch(chatActions.setCurrentDialog(null));
+      dispatch(
+        chatActions.setNewDialog(newDialog as Omit<DialogType, "lastMessage">)
+      );
     }
   };
 
   const handleSelectDialog = (dialog: DialogType) => {
-    dispatch(setCurrentDialog(dialog));
+    dispatch(chatActions.setCurrentDialog(dialog));
   };
 
   return (
@@ -134,10 +123,6 @@ export const ChatSidebarContainer = ({
       toggleCreateChat={handleToggleCreateChat}
       selectUser={handleSelectUser}
       selectDialog={handleSelectDialog}
-      loaderDialogs={loaders.dialogs}
-      loaderUsers={loaders.users}
-      errorDialogs={errorDialogs}
-      errorUsers={errorUsers}
     />
   );
 };

@@ -1,15 +1,15 @@
 /* eslint-disable require-jsdoc */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, DataGridType, GridRenderCellParams } from "@src/components/UI";
-import { WrapperText, WrapperImg, DiscountPrice } from "@src/components/Styles";
+import { Box, DataGridType, GridRenderCellParams } from "@common/components/UI";
 import {
-  ProductsTable,
-  getProductsThunkCreator,
-  productsErrorSelectors,
-  productsSelectors,
-} from "@src/features/products";
-import { loadersSelectors, LoaderWrap } from "@src/features/loaders";
+  WrapperText,
+  WrapperImg,
+  DiscountPrice,
+} from "@common/components/Styles";
+import { ProductsTable, productsSelectors } from "@features/products";
+import { productsProcesses } from "@processes/products";
+import { loadersSelectors, Loader } from "@features/loaders";
 
 const columns = [
   {
@@ -131,17 +131,16 @@ export const ProductsViewTable = ({
   selectionModel,
 }: ProductsViewTableType) => {
   const dispatch = useDispatch();
-  const loaders = useSelector(loadersSelectors());
-  const productsError = useSelector(productsErrorSelectors());
-  const products = useSelector(productsSelectors());
+  const loaders = useSelector(loadersSelectors.getLoaders());
+  const products = useSelector(productsSelectors.getProducts());
   const countDataPerPage = 5;
 
   useEffect(() => {
-    dispatch(getProductsThunkCreator());
+    dispatch(productsProcesses.getProducts());
   }, []);
 
   return (
-    <LoaderWrap loader={loaders.products} error={productsError}>
+    <Loader loader={loaders.products}>
       <Box
         sx={{
           "& .even__col": {
@@ -158,6 +157,6 @@ export const ProductsViewTable = ({
           selectionModel={selectionModel}
         />
       </Box>
-    </LoaderWrap>
+    </Loader>
   );
 };
