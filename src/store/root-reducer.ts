@@ -1,16 +1,16 @@
 import { combineReducers } from "redux";
 import { authReducer } from "@features/auth";
-import { loaderReducer } from "@features/loaders";
+import { loadersReducer } from "@features/loaders";
 import { productsReducer } from "@features/products";
 import { chatReducer } from "@features/chat";
-import { globalErrorReducer } from "@features/globalError";
+import { globalErrorsReducer } from "@features/globalErrors";
 
 export const rootReducer = combineReducers({
-  loaderReducer,
+  loadersReducer,
   productsReducer,
   chatReducer,
   authReducer,
-  globalErrorReducer,
+  globalErrorsReducer,
 });
 
 export type RootReducerType = ReturnType<typeof rootReducer>;

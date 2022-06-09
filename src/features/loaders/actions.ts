@@ -1,29 +1,40 @@
-export const SET_LOADER = "SET_PAGE_LOADER";
-export const REMOVE_LOADER = "REMOVE_PAGE_LOADER";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { InitialState } from "./ducks";
 
-type SetLoaderActionType = {
-  type: typeof SET_LOADER;
-  payload: string;
-};
-
-type RemoveLoaderActionType = {
-  type: typeof REMOVE_LOADER;
-  payload: string;
-};
-
-export type LoaderActionType = SetLoaderActionType | RemoveLoaderActionType;
-
-const setLoader = (payload: string): SetLoaderActionType => ({
-  type: SET_LOADER,
-  payload,
+/**
+ * ## [Экшин] Установить состояние загрузки
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<string>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const setLoader = (
+  state: InitialState,
+  { payload }: PayloadAction<string>
+): InitialState => ({
+  ...state,
+  loaders: {
+    ...state.loaders,
+    [payload]: true,
+  },
 });
 
-const removeLoader = (payload: string): RemoveLoaderActionType => ({
-  type: REMOVE_LOADER,
-  payload,
+/**
+ * ## [Экшин] Удалить состояние загрузки
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<string>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const removeLoader = (
+  state: InitialState,
+  { payload }: PayloadAction<string>
+): InitialState => ({
+  ...state,
+  loaders: {
+    ...state.loaders,
+    [payload]: false,
+  },
 });
-
-export const actions = {
-  setLoader,
-  removeLoader,
-};

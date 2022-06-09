@@ -1,46 +1,53 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+import { InitialState } from "./ducks";
 import { AuthType, ErrorType } from "./types";
 
-export const SET_IS_AUTH = "SET_IS_AUTH";
-export const SET_IS_REGISTER = "SET_IS_REGISTER";
-export const SET_AUTH_ERROR = "SET_AUTH_ERROR";
-
-type SetIsAuthActionType = {
-  type: typeof SET_IS_AUTH;
-  payload: AuthType;
-};
-
-type SetIsRegisterActionType = {
-  type: typeof SET_IS_REGISTER;
-  payload: boolean;
-};
-
-type SetAuthErrorActionType = {
-  type: typeof SET_AUTH_ERROR;
-  payload: ErrorType;
-};
-
-export type AuthActionType =
-  | SetIsAuthActionType
-  | SetIsRegisterActionType
-  | SetAuthErrorActionType;
-
-const setIsAuth = (payload: AuthType): SetIsAuthActionType => ({
-  type: SET_IS_AUTH,
-  payload,
+/**
+ * ## [Экшин] Установить состояние авторизации
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<AuthType>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const setIsAuth = (
+  state: InitialState,
+  { payload }: PayloadAction<AuthType>
+): InitialState => ({
+  ...state,
+  ...payload,
+  authError: null,
 });
 
-const setIsRegister = (payload: boolean): SetIsRegisterActionType => ({
-  type: SET_IS_REGISTER,
-  payload,
+/**
+ * ## [Экшин] Установить состояние регистрации
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<boolean>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const setIsRegister = (
+  state: InitialState,
+  { payload }: PayloadAction<boolean>
+): InitialState => ({
+  ...state,
+  isRegister: payload,
+  authError: null,
 });
 
-const setError = (payload: ErrorType): SetAuthErrorActionType => ({
-  type: SET_AUTH_ERROR,
-  payload,
+/**
+ * ## [Экшин] Установить ошибку авторизации/регистрации
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<ErrorType>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const setError = (
+  state: InitialState,
+  { payload }: PayloadAction<ErrorType>
+): InitialState => ({
+  ...state,
+  authError: payload,
 });
-
-export const actions = {
-  setIsAuth,
-  setIsRegister,
-  setError,
-};

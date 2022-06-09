@@ -1,4 +1,3 @@
-export { actions as loadersActions, LoaderActionType } from "./actions";
-export { loaderReducer } from "./ducks";
-export { Loader } from "./components/Loader";
+export { loadersReducer, actions as loadersActions } from "./ducks";
 export { selectors as loadersSelectors } from "./selectors";
+export { Loader } from "./components/Loader";

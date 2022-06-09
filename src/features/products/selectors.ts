@@ -1,20 +1,60 @@
 import { RootReducerType } from "@store";
+import { ProductsDataType, ProductType, SettingsFieldType } from "./types";
 
-const getProductsData = () => (state: RootReducerType) =>
-  state.productsReducer.productsData;
+/**
+ * ## [Селектор] Получить данные списка продуктов
+ *
+ * @returns {ProductsDataType} Данные списка продуктов
+ */
+const getProductsData =
+  () =>
+  (state: RootReducerType): ProductsDataType =>
+    state.productsReducer.productsData;
 
-const getProductsDataForEdit = () => (state: RootReducerType) =>
-  state.productsReducer.productsDataForEdit;
+/**
+ * ## [Селектор] Получить данные списка продуктов для редактирования
+ *
+ * @returns {ProductsDataType} Данные списка продуктов для редактирования
+ */
+const getProductsDataForEdit =
+  () =>
+  (state: RootReducerType): ProductsDataType =>
+    state.productsReducer.productsDataForEdit;
 
-const getProducts = () => (state: RootReducerType) =>
-  state.productsReducer.productsData.products;
+/**
+ * ## [Селектор] Получить список продуктов
+ *
+ * @returns {ProductType[]} Список продуктов
+ */
+const getProducts =
+  () =>
+  (state: RootReducerType): ProductType[] =>
+    state.productsReducer.productsData.products;
 
-const getSettingsFields = () => (state: RootReducerType) =>
-  state.productsReducer.settingsFields;
+/**
+ * ## [Селектор] Получить количество продуктов
+ *
+ * @returns {number} Количество продуктов
+ */
+const getProductsTotal =
+  () =>
+  (state: RootReducerType): number =>
+    state.productsReducer.productsData.total;
+
+/**
+ * ## [Селектор] Получить настройки для продуктов
+ *
+ * @returns {SettingsFieldType[]} Настройки для продуктов
+ */
+const getSettingsFields =
+  () =>
+  (state: RootReducerType): SettingsFieldType[] =>
+    state.productsReducer.settingsFields;
 
 export const selectors = {
   getProductsData,
   getProductsDataForEdit,
   getProducts,
+  getProductsTotal,
   getSettingsFields,
 };

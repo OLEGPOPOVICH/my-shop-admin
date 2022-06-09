@@ -4,14 +4,14 @@ import { Modal, Button, ErrorIcon } from "@common/components/UI";
 import {
   globalErrorActions,
   globalErrorSelectors,
-} from "@features/globalError";
+} from "@features/globalErrors";
 
-export const GlobalModalError = () => {
+export const GlobalModalErrors = () => {
   const modalErrors = useSelector(globalErrorSelectors.getModalErrors());
   const dispatch = useDispatch();
 
-  const handleClearError = () => {
-    dispatch(globalErrorActions.clearError());
+  const handleClearErrors = () => {
+    dispatch(globalErrorActions.clearErrors());
   };
 
   const handleUpdatePage = () => {
@@ -35,7 +35,7 @@ export const GlobalModalError = () => {
         >
           Обноовить страницу
         </Button>
-        <Button className="primary" onClick={handleClearError}>
+        <Button className="primary" onClick={handleClearErrors}>
           Закрыть
         </Button>
       </Modal.Footer>

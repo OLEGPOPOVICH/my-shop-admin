@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dispatch } from "react";
+import { AppDispatchType } from "@store";
 import { productsAPI } from "@api";
 import { ParamsListType } from "@database";
-import { loadersActions, LoaderActionType } from "@features/loaders";
+import { loadersActions } from "@features/loaders";
 import {
   productsActions,
-  ProductActionType,
   ProductType,
   SettingsFieldType,
 } from "@features/products";
-import { errorProcesses, HandleHTTPErrorProcesseType } from "@processes/error";
+import { errorProcesses } from "@processes/error";
 
 /**
  * ## Процесс получения списка продуктов
@@ -20,11 +19,7 @@ import { errorProcesses, HandleHTTPErrorProcesseType } from "@processes/error";
  */
 const getProducts =
   (params: Omit<ParamsListType, "ids"> = {}) =>
-  async (
-    dispatch: Dispatch<
-      ProductActionType | LoaderActionType | HandleHTTPErrorProcesseType
-    >
-  ) => {
+  async (dispatch: AppDispatchType) => {
     dispatch(loadersActions.setLoader("products"));
 
     try {
@@ -52,19 +47,13 @@ const getProducts =
  *
  * @returns {void}
  */
-const addProduct =
-  (data: ProductType) =>
-  async (
-    dispatch: Dispatch<ProductActionType | HandleHTTPErrorProcesseType>
-  ) => {
-    try {
-      await productsAPI.addProduct(data);
-
-      dispatch(productsActions.addProduct(data));
-    } catch (error: any) {
-      dispatch(errorProcesses.handleHTTPError(error));
-    }
-  };
+const addProduct = (data: ProductType) => async (dispatch: AppDispatchType) => {
+  try {
+    await productsAPI.addProduct(data);
+  } catch (error: any) {
+    dispatch(errorProcesses.handleHTTPError(error));
+  }
+};
 
 /**
  * ## Процесс редактирования продукта
@@ -76,9 +65,7 @@ const addProduct =
  */
 const saveProducts =
   (data: ProductType[], params: Pick<ParamsListType, "ids">) =>
-  async (
-    dispatch: Dispatch<ProductActionType | HandleHTTPErrorProcesseType>
-  ) => {
+  async (dispatch: AppDispatchType) => {
     try {
       dispatch(
         productsActions.setProductsForEdit({
@@ -111,11 +98,7 @@ const saveProducts =
  */
 const getProductsByIds =
   (params: Pick<ParamsListType, "ids">) =>
-  async (
-    dispatch: Dispatch<
-      ProductActionType | LoaderActionType | HandleHTTPErrorProcesseType
-    >
-  ) => {
+  async (dispatch: AppDispatchType) => {
     dispatch(loadersActions.setLoader("productsEdit"));
 
     try {
@@ -145,15 +128,11 @@ const getProductsByIds =
  */
 const deleteProducts =
   (params: Pick<ParamsListType, "ids">) =>
-  async (
-    dispatch: Dispatch<ProductActionType | HandleHTTPErrorProcesseType>
-  ) => {
+  async (dispatch: AppDispatchType) => {
     try {
       await productsAPI.deleteProducts({ params });
 
-      if (params.ids) {
-        dispatch(productsActions.deleteProducts(params.ids.split(",")));
-      }
+      dispatch(getProducts());
     } catch (error: any) {
       dispatch(errorProcesses.handleHTTPError(error));
     }
@@ -164,24 +143,18 @@ const deleteProducts =
  *
  * @returns {void}
  */
-const getSettingsFields =
-  () =>
-  async (
-    dispatch: Dispatch<
-      ProductActionType | LoaderActionType | HandleHTTPErrorProcesseType
-    >
-  ) => {
-    dispatch(loadersActions.setLoader("settingsFields"));
+const getSettingsFields = () => async (dispatch: AppDispatchType) => {
+  dispatch(loadersActions.setLoader("settingsFields"));
 
-    try {
-      const { data } = await productsAPI.getSettingsFields<SettingsFieldType>();
-      dispatch(productsActions.setSettingsFields(data));
-    } catch (error: any) {
-      dispatch(errorProcesses.handleHTTPError(error));
-    }
+  try {
+    const { data } = await productsAPI.getSettingsFields<SettingsFieldType>();
+    dispatch(productsActions.setSettingsFields(data));
+  } catch (error: any) {
+    dispatch(errorProcesses.handleHTTPError(error));
+  }
 
-    dispatch(loadersActions.removeLoader("settingsFields"));
-  };
+  dispatch(loadersActions.removeLoader("settingsFields"));
+};
 
 export const processes = {
   getProducts,

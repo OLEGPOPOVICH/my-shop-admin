@@ -1,107 +1,79 @@
-import {
-  ProductsDataType,
-  ProductType,
-  ProductsSaveType,
-  SettingsFieldType,
-} from "./types";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { InitialState } from "./ducks";
+import { ProductsDataType, ProductsSaveType, SettingsFieldType } from "./types";
 
-export const ADD_PRODUCT = "ADD_PRODUCT";
-export const DELETE_PRODUCTS = "DELETE_PRODUCTS";
-export const EDIT_PRODUCT = "EDIT_PRODUCT";
-export const SET_PRODUCTS = "SET_PRODUCTS";
-export const SAVE_PRODUCTS = "SAVE_PRODUCTS";
-export const SET_PRODUCTS_FOR_EDIT = "SET_PRODUCTS_FOR_EDIT";
-export const SET_SETTINGS_FIELDS = "SET_SETTINGS_FIELDS";
-
-type AddProductActionType = {
-  type: typeof ADD_PRODUCT;
-  payload: ProductType;
+/**
+ * ## [Экшин] Установить список продуктов
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<ProductsDataType>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const setProducts = (
+  state: InitialState,
+  { payload }: PayloadAction<ProductsDataType>
+): void => {
+  state.productsData = { ...payload };
 };
 
-type DeleteProductsActionType = {
-  type: typeof DELETE_PRODUCTS;
-  payload: string[];
+/**
+ * ## [Экшин] Сохранить продукты
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<ProductsSaveType>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const saveProducts = (
+  state: InitialState,
+  { payload }: PayloadAction<ProductsSaveType>
+): void => {
+  const { ids, products } = payload;
+
+  state.productsData.products = state.productsData.products.map(
+    (productItem) => {
+      if (ids.includes(productItem.id)) {
+        const productEdit = products.find(
+          (product) => product.id === productItem.id
+        );
+
+        if (productEdit) {
+          return productEdit;
+        }
+      }
+
+      return productItem;
+    }
+  );
 };
 
-type EditProductActionType = {
-  type: typeof EDIT_PRODUCT;
-  payload: Partial<ProductType>;
+/**
+ * ## [Экшин] Установить продукты для редактирования
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<ProductsDataType>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const setProductsForEdit = (
+  state: InitialState,
+  { payload }: PayloadAction<ProductsDataType>
+): void => {
+  state.productsDataForEdit = payload;
 };
 
-type setProductsActionType = {
-  type: typeof SET_PRODUCTS;
-  payload: ProductsDataType;
-};
-
-type saveProductsActionType = {
-  type: typeof SAVE_PRODUCTS;
-  payload: ProductsSaveType;
-};
-
-type setProductsForEditActionType = {
-  type: typeof SET_PRODUCTS_FOR_EDIT;
-  payload: ProductsDataType;
-};
-
-type setSettingsFieldsActionType = {
-  type: typeof SET_SETTINGS_FIELDS;
-  payload: SettingsFieldType[];
-};
-
-export type ProductActionType =
-  | AddProductActionType
-  | DeleteProductsActionType
-  | EditProductActionType
-  | setProductsActionType
-  | saveProductsActionType
-  | setProductsForEditActionType
-  | setSettingsFieldsActionType;
-
-const addProduct = (payload: ProductType): AddProductActionType => ({
-  type: ADD_PRODUCT,
-  payload,
-});
-
-const deleteProducts = (payload: string[]): DeleteProductsActionType => ({
-  type: DELETE_PRODUCTS,
-  payload,
-});
-
-const editProduct = (payload: Partial<ProductType>): EditProductActionType => ({
-  type: EDIT_PRODUCT,
-  payload,
-});
-
-const setProducts = (payload: ProductsDataType): setProductsActionType => ({
-  type: SET_PRODUCTS,
-  payload,
-});
-
-const saveProducts = (payload: ProductsSaveType): saveProductsActionType => ({
-  type: SAVE_PRODUCTS,
-  payload,
-});
-
-const setProductsForEdit = (
-  payload: ProductsDataType
-): setProductsForEditActionType => ({
-  type: SET_PRODUCTS_FOR_EDIT,
-  payload,
-});
-
-const setSettingsFields = (
-  payload: SettingsFieldType[]
-): setSettingsFieldsActionType => ({
-  type: SET_SETTINGS_FIELDS,
-  payload,
-});
-
-export const actions = {
-  addProduct,
-  deleteProducts,
-  editProduct,
-  setProducts,
-  saveProducts,
-  setProductsForEdit,
-  setSettingsFields,
+/**
+ * ## [Экшин] Установить настройки для продуктов
+ *
+ * @param {InitialState} state Состояние модуля
+ * @param {PayloadAction<SettingsFieldType[]>} action Экшин действия
+ *
+ * @returns {void}
+ */
+export const setSettingsFields = (
+  state: InitialState,
+  { payload }: PayloadAction<SettingsFieldType[]>
+): void => {
+  state.settingsFields = payload;
 };

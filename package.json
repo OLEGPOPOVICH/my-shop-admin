@@ -89,6 +89,7 @@
     "@mui/styles": "^5.2.3",
     "@mui/x-data-grid": "^5.2.2",
     "@mui/x-data-grid-generator": "^5.2.2",
+    "@reduxjs/toolkit": "^1.8.2",
     "@types/axios": "^0.14.0",
     "axios": "^0.26.0",
     "classnames": "^2.3.1",
