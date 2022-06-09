@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dispatch } from "react";
+import { AppDispatchType } from "@store";
 import { AuthService } from "@services";
-import {
-  authActions,
-  AuthActionType,
-  UserRegisterType,
-  UserLoginType,
-} from "@features/auth";
-import { errorProcesses, HandleHTTPErrorProcesseType } from "@processes/error";
-import { loadersActions, LoaderActionType } from "@features/loaders";
+import { authActions, UserRegisterType, UserLoginType } from "@features/auth";
+import { errorProcesses } from "@processes/error";
+import { loadersActions } from "@features/loaders";
 
 /**
  * ## Процесс регистрации
@@ -18,8 +13,7 @@ import { loadersActions, LoaderActionType } from "@features/loaders";
  * @returns {void}
  */
 const register =
-  (data: UserRegisterType) =>
-  async (dispatch: Dispatch<AuthActionType | HandleHTTPErrorProcesseType>) => {
+  (data: UserRegisterType) => async (dispatch: AppDispatchType) => {
     try {
       const response = await AuthService.register(data);
 
@@ -41,44 +35,11 @@ const register =
  *
  * @returns {void}
  */
-const login =
-  (data: UserLoginType) =>
-  async (dispatch: Dispatch<AuthActionType | HandleHTTPErrorProcesseType>) => {
-    try {
-      const response = await AuthService.login(data);
+const login = (data: UserLoginType) => async (dispatch: AppDispatchType) => {
+  try {
+    const response = await AuthService.login(data);
 
-      if (response.data.meta.statusText === "ok") {
-        localStorage.setItem("token", response.data.data.accessToken);
-        dispatch(
-          authActions.setIsAuth({
-            isAuth: true,
-            user: response.data.data.user,
-          })
-        );
-        return;
-      }
-
-      dispatch(authActions.setError(response.data.meta.desc));
-    } catch (error: any) {
-      dispatch(errorProcesses.handleHTTPError(error));
-    }
-  };
-
-/**
- * ## Процесс проверки авторизации
- *
- * @returns {void}
- */
-const checkAuth =
-  () =>
-  async (
-    dispatch: Dispatch<
-      AuthActionType | LoaderActionType | HandleHTTPErrorProcesseType
-    >
-  ) => {
-    try {
-      dispatch(loadersActions.setLoader("checkAuth"));
-      const response = await AuthService.checkAuth();
+    if (response.data.meta.statusText === "ok") {
       localStorage.setItem("token", response.data.data.accessToken);
       dispatch(
         authActions.setIsAuth({
@@ -86,34 +47,57 @@ const checkAuth =
           user: response.data.data.user,
         })
       );
-    } catch (error: any) {
-      dispatch(errorProcesses.handleHTTPError(error));
+      return;
     }
 
-    dispatch(loadersActions.removeLoader("checkAuth"));
-  };
+    dispatch(authActions.setError(response.data.meta.desc));
+  } catch (error: any) {
+    dispatch(errorProcesses.handleHTTPError(error));
+  }
+};
+
+/**
+ * ## Процесс проверки авторизации
+ *
+ * @returns {void}
+ */
+const checkAuth = () => async (dispatch: AppDispatchType) => {
+  try {
+    dispatch(loadersActions.setLoader("checkAuth"));
+    const response = await AuthService.checkAuth();
+    localStorage.setItem("token", response.data.data.accessToken);
+    dispatch(
+      authActions.setIsAuth({
+        isAuth: true,
+        user: response.data.data.user,
+      })
+    );
+  } catch (error: any) {
+    dispatch(errorProcesses.handleHTTPError(error));
+  }
+
+  dispatch(loadersActions.removeLoader("checkAuth"));
+};
 
 /**
  * ## Процесс разлогирования
  *
  * @returns {void}
  */
-const logout =
-  () =>
-  async (dispatch: Dispatch<AuthActionType | HandleHTTPErrorProcesseType>) => {
-    try {
-      localStorage.removeItem("token");
-      await AuthService.logout();
-      dispatch(
-        authActions.setIsAuth({
-          isAuth: false,
-          user: null,
-        })
-      );
-    } catch (error: any) {
-      dispatch(errorProcesses.handleHTTPError(error));
-    }
-  };
+const logout = () => async (dispatch: AppDispatchType) => {
+  try {
+    localStorage.removeItem("token");
+    await AuthService.logout();
+    dispatch(
+      authActions.setIsAuth({
+        isAuth: false,
+        user: null,
+      })
+    );
+  } catch (error: any) {
+    dispatch(errorProcesses.handleHTTPError(error));
+  }
+};
 
 export const processes = {
   register,

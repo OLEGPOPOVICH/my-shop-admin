@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dispatch } from "react";
+import { AppDispatchType } from "@store";
 import { ChatService, ParamsType } from "@services";
-import { chatActions, ChatActionsType, MessageType } from "@features/chat/";
-import { errorProcesses, HandleHTTPErrorProcesseType } from "@processes/error";
+import { chatActions, MessageType } from "@features/chat/";
+import { errorProcesses } from "@processes/error";
 
 /**
  * ## Процесс получения диалогов пользователя
@@ -13,8 +13,7 @@ import { errorProcesses, HandleHTTPErrorProcesseType } from "@processes/error";
  * @returns {void}
  */
 const getUserDialogs =
-  (userId: string, params: ParamsType) =>
-  async (dispatch: Dispatch<ChatActionsType | HandleHTTPErrorProcesseType>) => {
+  (userId: string, params: ParamsType) => async (dispatch: AppDispatchType) => {
     try {
       const response = await ChatService.getUserDialogs(userId, params);
       dispatch(chatActions.setDialogs(response.data.data));
@@ -30,16 +29,14 @@ const getUserDialogs =
  *
  * @returns {void}
  */
-const getUsers =
-  (params: ParamsType) =>
-  async (dispatch: Dispatch<ChatActionsType | HandleHTTPErrorProcesseType>) => {
-    try {
-      const response = await ChatService.getUsers(params);
-      dispatch(chatActions.setUsers(response.data.data));
-    } catch (error: any) {
-      dispatch(errorProcesses.handleHTTPError(error));
-    }
-  };
+const getUsers = (params: ParamsType) => async (dispatch: AppDispatchType) => {
+  try {
+    const response = await ChatService.getUsers(params);
+    dispatch(chatActions.setUsers(response.data.data));
+  } catch (error: any) {
+    dispatch(errorProcesses.handleHTTPError(error));
+  }
+};
 
 /**
  * ## Процесс получения сообщений диалога
@@ -49,8 +46,7 @@ const getUsers =
  * @returns {void}
  */
 const getDialogMessages =
-  (dialogId: string) =>
-  async (dispatch: Dispatch<ChatActionsType | HandleHTTPErrorProcesseType>) => {
+  (dialogId: string) => async (dispatch: AppDispatchType) => {
     try {
       const response = await ChatService.getDialogMessages(dialogId);
       dispatch(chatActions.setMessages(response.data.data));
@@ -68,7 +64,7 @@ const getDialogMessages =
  */
 const setMessagesRead =
   (dialogId: string, unreadMessages: MessageType[]) =>
-  (dispatch: Dispatch<ChatActionsType | HandleHTTPErrorProcesseType>) => {
+  (dispatch: AppDispatchType) => {
     try {
       ChatService.setMessagesRead(dialogId, unreadMessages);
     } catch (error: any) {
@@ -84,8 +80,7 @@ const setMessagesRead =
  * @returns {void}
  */
 const getDialogUsers =
-  (dialogId: string) =>
-  async (dispatch: Dispatch<ChatActionsType | HandleHTTPErrorProcesseType>) => {
+  (dialogId: string) => async (dispatch: AppDispatchType) => {
     try {
       const response = await ChatService.getDialogUsers(dialogId);
       dispatch(chatActions.setDialogUsers(response.data.data));
@@ -101,16 +96,14 @@ const getDialogUsers =
  *
  * @returns {void}
  */
-const getConnectedUserIds =
-  () =>
-  async (dispatch: Dispatch<ChatActionsType | HandleHTTPErrorProcesseType>) => {
-    try {
-      const response = await ChatService.getConnectedUserIds();
-      dispatch(chatActions.setConnectedUserIds(response.data.data));
-    } catch (error: any) {
-      dispatch(errorProcesses.handleHTTPError(error));
-    }
-  };
+const getConnectedUserIds = () => async (dispatch: AppDispatchType) => {
+  try {
+    const response = await ChatService.getConnectedUserIds();
+    dispatch(chatActions.setConnectedUserIds(response.data.data));
+  } catch (error: any) {
+    dispatch(errorProcesses.handleHTTPError(error));
+  }
+};
 
 export const processes = {
   getUserDialogs,

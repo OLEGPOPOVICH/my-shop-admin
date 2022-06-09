@@ -1,2 +1,6 @@
-export { store } from "./store";
-export { RootReducerType } from "./root-reducer";
+export {
+  setupStore,
+  AppStoreType,
+  AppDispatchType,
+  RootReducerType,
+} from "./store";

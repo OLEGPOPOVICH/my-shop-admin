@@ -10,8 +10,8 @@ import { authProcesses } from "@processes/auth";
 import {
   globalErrorSelectors,
   GlobalErrorLayout,
-  GlobalModalError,
-} from "@features/globalError";
+  GlobalModalErrors,
+} from "@features/globalErrors";
 import { loadersSelectors, Loader } from "@features/loaders";
 import { useChatState, useChatActions } from "@common/context/chat";
 
@@ -68,7 +68,7 @@ export const App = () => {
           </footer>
         </Loader>
       </div>
-      {isGlobalModalErrors ? <GlobalModalError /> : null}
+      {isGlobalModalErrors ? <GlobalModalErrors /> : null}
     </>
   );
 };

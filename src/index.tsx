@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { store } from "@store";
+import { setupStore } from "@store";
 import { HashRouter } from "react-router-dom";
 import { ChatProvider } from "@common/context/chat";
 import { App } from "./App";
@@ -11,7 +11,7 @@ import "@common/styles/scss.scss";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={setupStore()}>
       <HashRouter>
         <ChatProvider>
           <App />
