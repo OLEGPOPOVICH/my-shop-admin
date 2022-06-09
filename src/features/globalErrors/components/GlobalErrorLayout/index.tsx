@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Button, ErrorIcon } from "@common/components/UI";
-import { globalErrorSelectors } from "@features/globalError";
+import { globalErrorSelectors } from "@features/globalErrors";
 
 import "./GlobalErrorLayout";
 
