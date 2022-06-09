@@ -1,7 +1,15 @@
 import { RootReducerType } from "@store";
+import { LoadersType } from "./types";
 
-const getLoaders = () => (state: RootReducerType) =>
-  state.loaderReducer.loaders;
+/**
+ * ## [Селектор] Получить состояния загрузки
+ *
+ * @returns {LoadersType} Состояния загрузки
+ */
+const getLoaders =
+  () =>
+  (state: RootReducerType): LoadersType =>
+    state.loadersReducer.loaders;
 
 export const selectors = {
   getLoaders,

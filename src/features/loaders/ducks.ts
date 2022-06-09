@@ -1,34 +1,24 @@
-import { SET_LOADER, REMOVE_LOADER, LoaderActionType } from "./actions";
+import { createSlice } from "@reduxjs/toolkit";
+import { setLoader, removeLoader } from "./actions";
+import { LoadersType } from "./types";
 
 const initialState = {
   globalLoader: false,
-  loaders: {} as { [key: string]: boolean },
+  loaders: {} as LoadersType,
 };
 
-type InitialStateType = typeof initialState;
+export type InitialState = typeof initialState;
 
-export const loaderReducer = (
-  state = initialState,
-  action: LoaderActionType
-): InitialStateType => {
-  switch (action.type) {
-    case SET_LOADER:
-      return {
-        ...state,
-        loaders: {
-          ...state.loaders,
-          [action.payload]: true,
-        },
-      };
-    case REMOVE_LOADER:
-      return {
-        ...state,
-        loaders: {
-          ...state.loaders,
-          [action.payload]: false,
-        },
-      };
-    default:
-      return state;
-  }
+const loadersSlice = createSlice({
+  name: "loaders",
+  initialState,
+  reducers: {
+    setLoader,
+    removeLoader,
+  },
+});
+
+export const loadersReducer = loadersSlice.reducer;
+export const actions = {
+  ...loadersSlice.actions,
 };
