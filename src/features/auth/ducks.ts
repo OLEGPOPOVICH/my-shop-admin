@@ -1,9 +1,5 @@
-import {
-  AuthActionType,
-  SET_AUTH_ERROR,
-  SET_IS_AUTH,
-  SET_IS_REGISTER,
-} from "./actions";
+import { createSlice } from "@reduxjs/toolkit";
+import { setIsAuth, setIsRegister, setError } from "./actions";
 import { AuthUserType, ErrorType } from "./types";
 
 const initialState = {
@@ -13,31 +9,19 @@ const initialState = {
   authError: null as ErrorType,
 };
 
-type InitialStateType = typeof initialState;
+export type InitialState = typeof initialState;
 
-export const authReducer = (
-  state = initialState,
-  action: AuthActionType
-): InitialStateType => {
-  switch (action.type) {
-    case SET_IS_AUTH:
-      return {
-        ...state,
-        ...action.payload,
-        authError: null,
-      };
-    case SET_IS_REGISTER:
-      return {
-        ...state,
-        isRegister: action.payload,
-        authError: null,
-      };
-    case SET_AUTH_ERROR:
-      return {
-        ...state,
-        authError: action.payload,
-      };
-    default:
-      return state;
-  }
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    setIsAuth,
+    setIsRegister,
+    setError,
+  },
+});
+
+export const authReducer = authSlice.reducer;
+export const actions = {
+  ...authSlice.actions,
 };
